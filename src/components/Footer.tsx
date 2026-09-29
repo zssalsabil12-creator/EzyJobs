@@ -1,54 +1,39 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      {/* Newsletter Section */}
-      <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="bg-gradient-to-l from-teal-600 to-emerald-700 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold mb-3">📬 لا تفوّت أي وظيفة</h3>
-                <p className="text-emerald-100">
-                  اشترك في النشرة البريدية واحصل على أحدث الوظائف مباشرة في بريدك
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input 
-                  type="email" 
-                  placeholder="بريدك الإلكتروني"
-                  className="flex-1 px-5 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 text-right"
-                />
-                <button className="bg-white text-teal-700 px-6 py-3.5 rounded-xl font-bold hover:bg-gray-100 transition-colors whitespace-nowrap">
-                  اشترك الآن
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[#0A0A0A] text-white border-t border-white/5">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        {/* Main Footer */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                <span className="text-white text-xl font-bold">و</span>
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-11 h-11 bg-[#FF4D00] rounded-xl flex items-center justify-center">
+                <span className="text-white font-display font-bold text-xl">W</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold">وظائف أونلاين</h3>
-                <p className="text-xs text-gray-400">بوابتك للعمل عن بُعد</p>
+                <h3 className="font-display font-bold text-xl tracking-tight">WAZIFAH</h3>
+                <p className="text-white/40 text-[10px] tracking-wider">REMOTE WORK HUB</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">
+            <p className="text-white/50 leading-relaxed mb-6 max-w-sm">
               نجمع لك أفضل الوظائف عن بُعد من مصادر عالمية موثوقة، 
-              مترجمة للعربية لتسهيل الوصول إليها.
+              مترجمة بالكامل للعربية لتسهيل الوصول إليها.
             </p>
             <div className="flex gap-3">
-              {['𝕏', '📘', '📸', '💬'].map((icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 bg-gray-800 hover:bg-teal-600 rounded-lg flex items-center justify-center transition-colors text-sm">
-                  {icon}
+              {[
+                { icon: '𝕏', label: 'Twitter' },
+                { icon: '📘', label: 'Facebook' },
+                { icon: '📸', label: 'Instagram' },
+                { icon: '💬', label: 'Telegram' },
+                { icon: '🔗', label: 'LinkedIn' },
+              ].map((social) => (
+                <a 
+                  key={social.label}
+                  href="#" 
+                  className="w-10 h-10 bg-white/5 hover:bg-[#FF4D00] rounded-xl flex items-center justify-center transition-all duration-300 text-sm"
+                  title={social.label}
+                >
+                  {social.icon}
                 </a>
               ))}
             </div>
@@ -56,51 +41,49 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-bold text-white mb-4">روابط سريعة</h4>
-            <ul className="space-y-2.5">
+            <h4 className="font-bold text-white mb-6 text-sm tracking-wider">روابط سريعة</h4>
+            <ul className="space-y-3">
               {['الوظائف المتاحة', 'التصنيفات', 'كيف يعمل', 'نموذج الربح', 'الأسئلة الشائعة'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-teal-400 transition-colors">{link}</a>
+                  <a href="#" className="text-sm text-white/40 hover:text-[#FF4D00] transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-white mb-4">مصادر الوظائف</h4>
-            <ul className="space-y-2.5">
+            <h4 className="font-bold text-white mb-6 text-sm tracking-wider">مصادر الوظائف</h4>
+            <ul className="space-y-3">
               {['LinkedIn', 'Upwork', 'Indeed', 'Remote.co', 'We Work Remotely', 'FlexJobs'].map((source) => (
                 <li key={source}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-teal-400 transition-colors">{source}</a>
+                  <a href="#" className="text-sm text-white/40 hover:text-[#FF4D00] transition-colors">{source}</a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-white mb-4">للباحثين عن عمل</h4>
-            <ul className="space-y-2.5">
-              {['نصائح السيرة الذاتية', 'تحضير المقابلات', 'مهارات مطلوبة', 'وظائف للطلاب', 'عمل حر للمبتدئين', 'أدوات مفيدة'].map((link) => (
+            <h4 className="font-bold text-white mb-6 text-sm tracking-wider">للباحثين عن عمل</h4>
+            <ul className="space-y-3">
+              {['نصائح السيرة الذاتية', 'تحضير المقابلات', 'مهارات مطلوبة', 'وظائف للطلاب', 'عمل حر للمبتدئين'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-teal-400 transition-colors">{link}</a>
+                  <a href="#" className="text-sm text-white/40 hover:text-[#FF4D00] transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Bottom Bar */}
+        <div className="border-t border-white/5 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-500">
-              © 2025 وظائف أونلاين. جميع الحقوق محفوظة.
+            <p className="text-sm text-white/30">
+              © 2026 WAZIFAH. جميع الحقوق محفوظة.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">سياسة الخصوصية</a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">شروط الاستخدام</a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">اتصل بنا</a>
+              <a href="#" className="text-sm text-white/30 hover:text-white/60 transition-colors">سياسة الخصوصية</a>
+              <a href="#" className="text-sm text-white/30 hover:text-white/60 transition-colors">شروط الاستخدام</a>
+              <a href="#" className="text-sm text-white/30 hover:text-white/60 transition-colors">اتصل بنا</a>
             </div>
           </div>
         </div>
