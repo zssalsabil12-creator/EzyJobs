@@ -23,7 +23,15 @@ const mod = await import(pathToFileURL(resolve(ssrOut, '__ssr.js')).href + '?v='
 const baseHtml = readFileSync(resolve(root, 'dist', 'index.html'), 'utf8');
 
 const isIndexable = (route) => {
-  if (route === '/' || route === '/jobs' || route === '/remote') return true;
+  if (
+    route === '/' ||
+    route === '/jobs' ||
+    route === '/remote' ||
+    route === '/students' ||
+    route === '/no-experience' ||
+    route === '/about' ||
+    route === '/student-writer'
+  ) return true;
   if (route === '/en/jobs' || route === '/fr/emplois') return true;
   if (route === '/en/remote-jobs' || route === '/fr/emploi-teletravail') return true;
   if (route === '/demand' || route === '/en/job-search-trends' || route === '/fr/tendances-emploi') return true;
@@ -76,6 +84,10 @@ const renderDocument = (route, rendered) => {
   html = setMeta(html, 'property', 'og:title', payload.title);
   html = setMeta(html, 'property', 'og:description', payload.description);
   html = setMeta(html, 'property', 'og:url', payload.canonical);
+  html = setMeta(html, 'property', 'og:image', 'https://ezyjobs.com/hero-mascot-scene.jpg');
+  html = setMeta(html, 'name', 'twitter:title', payload.title);
+  html = setMeta(html, 'name', 'twitter:description', payload.description);
+  html = setMeta(html, 'name', 'twitter:image', 'https://ezyjobs.com/hero-mascot-scene.jpg');
 
   html = html.split('\n').filter((line) => {
     return !line.includes('rel="canonical"')

@@ -5,11 +5,13 @@ import { ProfileProvider } from './features/profile/ProfileContext';
 import { AppRoutes } from './App';
 import { seedJobs } from './data/seedJobs';
 import { liveJobs } from './data/liveJobs';
-import { getJobSeo, jobPostingJsonLd, localeFromPath } from './lib/seoI18n';
+import { getJobSeo, jobPostingJsonLd, localeFromPath, homeJsonLd, SITE_URL } from './lib/seoI18n';
 import { keywordIntelligence } from './data/keywordIntelligence';
 import { keywordLandingRows, keywordRowBySlug, keywordLocaleTitle, slugifyKeyword } from './lib/keywordLanding';
+import { GUIDES } from './content/guides';
+import { categoryBySlug, countryBySlug } from './data/taxonomy';
 
-const allJobs = liveJobs.length ? liveJobs : seedJobs;
+const allJobs = (liveJobs.length ? liveJobs : seedJobs).filter((job) => job.status === 'published' && job.eligibility !== 'closed');
 export { allJobs };
 
 export function render(url: string) {
@@ -41,6 +43,65 @@ export function getSeoPayload(url: string) {
     };
   }
 
+  if (pathname.startsWith('/guides/')) {
+    const slug = pathname.slice('/guides/'.length);
+    const guide = GUIDES.find((item) => item.slug === slug);
+    if (guide) {
+      const canonical = SITE_URL + pathname;
+      return {
+        title: guide.title + ' | ezyjobs',
+        description: guide.excerpt,
+        canonical,
+        alternates: {},
+        locale: 'ar' as const,
+        direction: 'rtl' as const,
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: guide.title,
+          description: guide.excerpt,
+          datePublished: guide.publishedAt,
+          dateModified: guide.publishedAt,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+          publisher: { '@type': 'Organization', name: 'EzyJobs', url: SITE_URL },
+        },
+      };
+    }
+  }
+
+  if (pathname === '/guides') {
+    return {
+      title: 'أدلة العمل عن بُعد والسيرة الذاتية | ezyjobs',
+      description: 'أدلة عملية بالعربية حول العمل عن بُعد، السيرة الذاتية، أنظمة ATS، مقابلات العمل وفرص الطلاب.',
+      canonical: SITE_URL + '/guides',
+      alternates: {},
+      locale: 'ar' as const,
+      direction: 'rtl' as const,
+    };
+  }
+
+  if (pathname === '/students') {
+    return {
+      title: 'وظائف للطلاب أثناء الدراسة | ezyjobs',
+      description: 'وظائف مرنة وتدريب وفرص عن بُعد للطلاب، مع توضيح الخبرة والساعات والأهلية قبل التقديم.',
+      canonical: SITE_URL + '/students',
+      alternates: {},
+      locale: 'ar' as const,
+      direction: 'rtl' as const,
+    };
+  }
+
+  if (pathname === '/no-experience') {
+    return {
+      title: 'وظائف بدون خبرة | ابدأ من الصفر | ezyjobs',
+      description: 'وظائف عن بُعد لا تشترط خبرة سابقة، مع شرح المهارات والأهلية ومصدر التقديم.',
+      canonical: SITE_URL + '/no-experience',
+      alternates: {},
+      locale: 'ar' as const,
+      direction: 'rtl' as const,
+    };
+  }
+
   const jobPrefix = locale === 'ar' ? '/jobs/' : '/' + locale + '/jobs/';
   if (pathname.startsWith(jobPrefix)) {
     const slug = pathname.slice(jobPrefix.length);
@@ -48,10 +109,89 @@ export function getSeoPayload(url: string) {
     if (job) return { ...getJobSeo(job, locale), jsonLd: jobPostingJsonLd(job, locale) };
   }
 
+  if (pathname === '/tools' || pathname === '/tools/cv' || pathname === '/tools/ats' || pathname === '/tools/interview') {
+    const toolMeta: Record<string, { title: string; description: string }> = {
+      '/tools': { title: 'أدوات التوظيف المجانية | ezyjobs', description: 'أدوات مجانية بالعربية لإنشاء السيرة الذاتية، فحص التوافق مع ATS والاستعداد لمقابلة العمل عن بُعد.' },
+      '/tools/cv': { title: 'منشئ سيرة ذاتية مجاني | ezyjobs', description: 'أنشئ سيرة ذاتية عربية بعمود واحد واضحة لأنظمة التوظيف الآلية، مع تشخيص سريع لملفك.' },
+      '/tools/ats': { title: 'فاحص توافق السيرة الذاتية مع ATS | ezyjobs', description: 'قارن إعلان الوظيفة بسيرتك الذاتية واعرف المهارات والكلمات المفتاحية الناقصة قبل التقديم.' },
+      '/tools/interview': { title: 'تحضير مقابلة العمل عن بُعد | ezyjobs', description: 'جهّز إجاباتك وأسئلة المقابلة وخطة اليوم السابق لمقابلة عمل عن بُعد.' },
+    };
+    const meta = toolMeta[pathname];
+    return { title: meta.title, description: meta.description, canonical: SITE_URL + pathname, alternates: {}, locale: 'ar' as const, direction: 'rtl' as const };
+  }
+
+  if (pathname === '/about') {
+    return {
+      title: 'من نحن | ezyjobs',
+      description: 'تعرف على ezyjobs وكيف نجمع الوظائف ونوضح الأهلية ونقربك من مصدر التقديم الأصلي.',
+      canonical: SITE_URL + '/about',
+      alternates: {},
+      locale: 'ar' as const,
+      direction: 'rtl' as const,
+    };
+  }
+
+  if (pathname === '/student-writer') {
+    return {
+      title: 'EzyPublish — انشر محتواك واربح من جمهورك | ezyjobs',
+      description: 'مساحة EzyPublish للكتّاب والناشرين لإنتاج محتوى عملي يصل إلى الباحثين عن وظائف وفرص مهنية.',
+      canonical: SITE_URL + '/student-writer',
+      alternates: {},
+      locale: 'ar' as const,
+      direction: 'rtl' as const,
+    };
+  }
+
+  if (pathname.startsWith('/country/')) {
+    const item = countryBySlug(pathname.slice('/country/'.length));
+    if (item) {
+      const canonical = SITE_URL + pathname;
+      return {
+        title: `وظائف عن بعد ${item.demonym} — ${item.name} | ezyjobs`,
+        description: `وظائف عن بعد تقبل المتقدمين من ${item.name}، مع توضيح الأهلية والخبرة ومصدر التقديم.`,
+        canonical,
+        alternates: {},
+        locale: 'ar' as const,
+        direction: 'rtl' as const,
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: `وظائف عن بعد ${item.demonym}`,
+          description: `وظائف عن بعد للمتقدمين من ${item.name}`,
+          url: canonical,
+          inLanguage: 'ar',
+        },
+      };
+    }
+  }
+
+  if (pathname.startsWith('/field/')) {
+    const item = categoryBySlug(pathname.slice('/field/'.length));
+    if (item) {
+      const canonical = SITE_URL + pathname;
+      return {
+        title: `وظائف ${item.name} عن بُعد — شرح بالعربية | ezyjobs`,
+        description: `وظائف ${item.name} عن بُعد مترجمة ومحللة بالعربية، مع توضيح الخبرة والمهارات والأهلية قبل التقديم.`,
+        canonical,
+        alternates: {},
+        locale: 'ar' as const,
+        direction: 'rtl' as const,
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: `وظائف ${item.name} عن بُعد`,
+          description: `فرص ${item.name} عن بُعد`,
+          url: canonical,
+          inLanguage: 'ar',
+        },
+      };
+    }
+  }
+
   const collections: Record<string, { title: string; description: string }> = {
     '/': {
-      title: 'ezyjobs — وظائف وفرص عمل عن بعد',
-      description: 'ابحث عن وظائف عن بعد واقرأ الأهلية قبل التقديم.',
+      title: 'EzyJobs — وظائف وفرص عمل عن بُعد',
+      description: 'اكتشف وظائف عن بُعد وفرصاً مرنة وملائمة للطلاب، مع توضيح الأهلية والمتطلبات ومصدر التقديم قبل اتخاذ قرارك.',
     },
     '/jobs': {
       title: 'الوظائف | ezyjobs',
@@ -91,6 +231,7 @@ export function getSeoPayload(url: string) {
     },
   };
   const item = collections[pathname];
+  const home = pathname === '/';
   const alternates = {
     '/en/remote-jobs': {
       ar: 'https://ezyjobs.com/remote',
@@ -117,14 +258,28 @@ export function getSeoPayload(url: string) {
       'x-default': 'https://ezyjobs.com/en/jobs',
     },
   }[pathname] || {};
-  return {
-    title: item?.title || 'ezyjobs',
-    description: item?.description || 'Find jobs and prepare stronger applications with ezyjobs.',
-    canonical: 'https://ezyjobs.com' + pathname,
+  const canonical = SITE_URL + pathname;
+  const basePayload = {
+    title: item?.title || 'EzyJobs — وظائف وفرص عمل عن بُعد',
+    description: item?.description || 'اكتشف الوظائف عن بُعد والفرص المرنة، وافهم الأهلية والمتطلبات قبل التقديم.',
+    canonical,
     alternates,
     locale,
     direction: locale === 'ar' ? 'rtl' : 'ltr',
   };
+  if (home) {
+    return {
+      ...basePayload,
+      alternates: {
+        ar: SITE_URL + '/',
+        en: SITE_URL + '/en/jobs',
+        fr: SITE_URL + '/fr/emplois',
+        'x-default': SITE_URL + '/',
+      },
+      jsonLd: homeJsonLd(),
+    };
+  }
+  return basePayload;
 }
 
 export const routes = [

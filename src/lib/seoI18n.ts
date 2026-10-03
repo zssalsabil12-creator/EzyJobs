@@ -10,6 +10,9 @@ import {
 
 export type SiteLocale = 'ar' | 'en' | 'fr';
 export const SITE_URL = 'https://ezyjobs.com';
+export const SITE_NAME = 'EzyJobs';
+export const SITE_LOGO = SITE_URL + '/favicon.svg';
+export const SITE_SOCIALS: string[] = [];
 
 export const localeFromPath = (pathname: string): SiteLocale => {
   if (pathname === '/en' || pathname.startsWith('/en/')) return 'en';
@@ -70,14 +73,29 @@ export const localizedJobCopy = (job: Job, locale: SiteLocale) => {
 
 const jobDescription = (job: Job, locale: SiteLocale) => {
   const copy = localizedJobCopy(job, locale);
-  return [
+  const parts = [
     copy.intro,
+    job.summaryAr,
+    job.descriptionAr,
     copy.remote,
     copy.commitment,
     copy.experience,
     copy.eligibility,
     copy.skills,
-  ].join(' ');
+    job.requirements.length
+      ? (locale === 'fr' ? 'Exigences : ' : locale === 'en' ? 'Requirements: ' : 'المتطلبات: ') + job.requirements.join(locale === 'ar' ? '، ' : ', ')
+      : '',
+    job.niceToHave.length
+      ? (locale === 'fr' ? 'Atouts : ' : locale === 'en' ? 'Nice to have: ' : 'يفضل: ') + job.niceToHave.join(locale === 'ar' ? '، ' : ', ')
+      : '',
+    job.weeklyHours
+      ? (locale === 'fr' ? 'Heures hebdomadaires : ' : locale === 'en' ? 'Weekly hours: ' : 'الساعات الأسبوعية: ') + job.weeklyHours
+      : '',
+    job.education
+      ? (locale === 'fr' ? 'Formation : ' : locale === 'en' ? 'Education: ' : 'التعليم: ') + job.education
+      : '',
+  ].filter(Boolean);
+  return parts.join(' ');
 };
 
 export const getJobSeo = (job: Job, locale: SiteLocale) => {
@@ -99,6 +117,36 @@ export const getJobSeo = (job: Job, locale: SiteLocale) => {
   };
 };
 
+export const homeJsonLd = () => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': SITE_URL + '/#organization',
+      name: SITE_NAME,
+      url: SITE_URL + '/',
+      logo: { '@type': 'ImageObject', url: SITE_LOGO },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': SITE_URL + '/#website',
+      name: SITE_NAME,
+      url: SITE_URL + '/',
+      publisher: { '@id': SITE_URL + '/#organization' },
+      inLanguage: ['ar', 'en', 'fr'],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': SITE_URL + '/#webpage',
+      url: SITE_URL + '/',
+      name: 'EzyJobs — وظائف وفرص عمل عن بُعد',
+      isPartOf: { '@id': SITE_URL + '/#website' },
+      about: { '@id': SITE_URL + '/#organization' },
+      inLanguage: 'ar',
+    },
+  ],
+});
+
 const employmentType: Record<string, string> = {
   'full-time': 'FULL_TIME',
   'part-time': 'PART_TIME',
@@ -107,8 +155,16 @@ const employmentType: Record<string, string> = {
   contract: 'CONTRACTOR',
 };
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 export const jobPostingJsonLd = (job: Job, locale: SiteLocale = 'en') => {
-  if (job.source.distribution === 'aggregator') return undefined;
+  if (job.source.distribution === 'aggregator' || job.status !== 'published') return undefined;
   const seo = getJobSeo(job, locale);
   const period =
     job.salary?.period === 'hour' ? 'HOUR' :
@@ -130,11 +186,29 @@ export const jobPostingJsonLd = (job: Job, locale: SiteLocale = 'en') => {
   const countries = job.eligibleRegions
     .filter((code) => code !== 'worldwide')
     .map((code) => ({ '@type': 'Country', name: countryName(code) }));
-  return {
-    '@context': 'https://schema.org',
+
+  // Google requires a concrete applicant country for remote JobPosting markup.
+  // Keep worldwide remote jobs out of JobPosting rich-result markup rather than
+  // inventing a country that the source did not specify.
+  if (job.workMode === 'remote' && !countries.length) return undefined;
+
+  const htmlDescription = [
+    '<p>' + escapeHtml(job.summaryAr || jobDescription(job, locale)) + '</p>',
+    job.descriptionAr ? '<p>' + escapeHtml(job.descriptionAr) + '</p>' : '',
+    job.requirements.length
+      ? '<p><strong>' + escapeHtml(locale === 'ar' ? 'المتطلبات' : locale === 'fr' ? 'Exigences' : 'Requirements') + ':</strong></p><ul>' +
+        job.requirements.map((item) => '<li>' + escapeHtml(item) + '</li>').join('') + '</ul>'
+      : '',
+    job.niceToHave.length
+      ? '<p><strong>' + escapeHtml(locale === 'ar' ? 'يفضل' : locale === 'fr' ? 'Atouts' : 'Nice to have') + ':</strong></p><ul>' +
+        job.niceToHave.map((item) => '<li>' + escapeHtml(item) + '</li>').join('') + '</ul>'
+      : '',
+  ].filter(Boolean).join('');
+
+  const jobPosting = {
     '@type': 'JobPosting',
     title: locale === 'ar' ? job.titleAr : job.titleOriginal,
-    description: jobDescription(job, locale),
+    description: htmlDescription,
     identifier: { '@type': 'PropertyValue', name: 'ezyjobs', value: job.id },
     datePosted: job.publishedAt,
     employmentType: employmentType[job.commitment] || job.commitment.toUpperCase(),
@@ -153,5 +227,35 @@ export const jobPostingJsonLd = (job: Job, locale: SiteLocale = 'en') => {
     skills: job.skills.join(', '),
     ...(baseSalary ? { baseSalary } : {}),
     url: seo.canonical,
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      jobPosting,
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: locale === 'ar' ? 'الرئيسية' : locale === 'fr' ? 'Accueil' : 'Home',
+            item: SITE_URL + (locale === 'ar' ? '/' : locale === 'fr' ? '/fr/emplois' : '/en/jobs'),
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: locale === 'ar' ? 'الوظائف' : locale === 'fr' ? 'Emplois' : 'Jobs',
+            item: SITE_URL + localizedJobPath(locale, job.slug).replace(/\/[^/]+$/, ''),
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: locale === 'ar' ? job.titleAr : job.titleOriginal,
+            item: seo.canonical,
+          },
+        ],
+      },
+    ],
   };
 };

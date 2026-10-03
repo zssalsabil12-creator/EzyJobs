@@ -88,8 +88,8 @@ export default function SiteHeader() {
         style={{ transform: `scaleX(${progress})`, boxShadow: '0 0 12px rgba(47,100,214,0.35)' }}
         aria-hidden
       />
-      <div className={`home-header__inner mx-auto flex items-center justify-between px-5 lg:px-10 ${
-        isHome ? 'max-w-[1380px] py-5 lg:py-6' : 'max-w-[1240px] py-4'
+      <div dir="rtl" className={`home-header__inner mx-auto flex items-center justify-between px-5 lg:px-10 ${
+        isHome ? 'max-w-[1380px] py-4 lg:py-5' : 'max-w-[1240px] py-4'
       }`}>
         <Link to="/" className="home-header__brand group flex items-center gap-3" aria-label="EzyJobs">
           <span className="transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105">
@@ -101,19 +101,19 @@ export default function SiteHeader() {
             </span>
             {!isHome && (
               <span className="mt-0.5 block text-[9px] font-semibold text-ink/60">
-                <span className="tracking-in inline-block">{settings.header_tagline?.trim() || 'ARABIC REMOTE JOBS'}</span>
+                <span className="tracking-in inline-block">{settings.header_tagline?.trim() || 'وظائف عربية عن بُعد'}</span>
               </span>
             )}
           </span>
         </Link>
 
-        <nav className="home-header__nav hidden items-center gap-8 lg:flex">
+        <nav className="home-header__nav hidden items-center gap-7 lg:flex">
           {isHome ? (
             <>
-              <NavLink to="/jobs" className="home-nav-link is-active">Jobs</NavLink>
-              <NavLink to="/remote" className="home-nav-link">Remote</NavLink>
-              <NavLink to="/students" className="home-nav-link">Students</NavLink>
-              <NavLink to="/tools" className="home-nav-link">Career Tools</NavLink>
+              <NavLink to="/jobs" className={({ isActive }) => `home-nav-link ${isActive ? 'is-active' : ''}`}>الوظائف</NavLink>
+              <NavLink to="/remote" className={({ isActive }) => `home-nav-link ${isActive ? 'is-active' : ''}`}>عن بُعد</NavLink>
+              <NavLink to="/students" className={({ isActive }) => `home-nav-link ${isActive ? 'is-active' : ''}`}>للطلاب</NavLink>
+              <NavLink to="/tools" className={({ isActive }) => `home-nav-link ${isActive ? 'is-active' : ''}`}>أدوات مهنية</NavLink>
             </>
           ) : (
             links.map((l) => (
@@ -138,8 +138,8 @@ export default function SiteHeader() {
           <button
             onClick={openPalette}
             className={isHome ? 'home-header-search' : 'ez-btn ez-btn-ghost group px-3 py-2.5 text-[13px]'}
-            aria-label={isHome ? 'Search jobs' : (settings.nav_search_label?.trim() || 'بحث')}
-            title={isHome ? 'Search jobs' : (settings.nav_search_title?.trim() || 'بحث')}
+            aria-label={isHome ? 'البحث عن وظيفة' : (settings.nav_search_label?.trim() || 'بحث')}
+            title={isHome ? 'البحث عن وظيفة' : (settings.nav_search_title?.trim() || 'بحث')}
           >
             <svg width={isHome ? 18 : 14} height={isHome ? 18 : 14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -155,26 +155,26 @@ export default function SiteHeader() {
                 className={isHome ? 'home-account-button' : 'ez-btn ez-btn-ghost gap-2 px-4 py-2.5 text-[13px]'}
                 aria-expanded={accountOpen}
               >
-                <span className="max-w-[120px] truncate">{isHome ? 'Account' : (session.user.email?.split('@')[0] || 'حسابي')}</span>
+                <span className="max-w-[120px] truncate">{isHome ? 'حسابي' : (session.user.email?.split('@')[0] || 'حسابي')}</span>
                 <span className="text-ink/60">⌄</span>
               </button>
               {accountOpen && (
                 <div className="absolute right-0 top-[calc(100%+10px)] z-50 w-56 rounded-2xl border border-line bg-surface p-2 shadow-2xl">
-                  <Link to="/profile" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'Profile' : (settings.nav_profile_label?.trim() || 'ملفي المهني')}</Link>
-                  <Link to="/applications" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'Applications' : 'تقديماتي'}</Link>
-                  <Link to="/saved" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'Saved jobs' : 'الوظائف المحفوظة'}</Link>
-                  <Link to="/tasks" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">EzyTasks</Link>
-                  {isPublisher && <Link to="/publish" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'EzyPublish' : 'مساحة EzyPublish'}</Link>}
-                  {isAdmin && <Link to="/admin" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'Admin' : (settings.nav_admin_label?.trim() || 'لوحة الإدارة')}</Link>}
-                  {!isAdmin && isPublisher && <Link to="/dashboard" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'Dashboard' : (settings.nav_dashboard_label?.trim() || 'لوحة التحكم')}</Link>}
-                  <button onClick={handleSignOut} className="mt-1 w-full rounded-xl px-4 py-3 text-right text-sm font-semibold text-danger hover:bg-danger-soft">{isHome ? 'Log out' : (settings.nav_logout_label?.trim() || 'تسجيل الخروج')}</button>
+                  <Link to="/profile" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{settings.nav_profile_label?.trim() || 'ملفي المهني'}</Link>
+                  <Link to="/applications" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">تقديماتي</Link>
+                  <Link to="/saved" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">الوظائف المحفوظة</Link>
+                  <Link to="/tasks" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">مهام EzyTasks</Link>
+                  {isPublisher && <Link to="/publish" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{isHome ? 'مساحة EzyPublish' : 'مساحة EzyPublish'}</Link>}
+                  {isAdmin && <Link to="/admin" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{settings.nav_admin_label?.trim() || 'لوحة الإدارة'}</Link>}
+                  {!isAdmin && isPublisher && <Link to="/dashboard" className="block rounded-xl px-4 py-3 text-sm font-semibold text-ink hover:bg-brand-50/70">{settings.nav_dashboard_label?.trim() || 'لوحة التحكم'}</Link>}
+                  <button onClick={handleSignOut} className="mt-1 w-full rounded-xl px-4 py-3 text-right text-sm font-semibold text-danger hover:bg-danger-soft">{settings.nav_logout_label?.trim() || 'تسجيل الخروج'}</button>
                 </div>
               )}
             </div>
           ) : isHome ? (
             <>
-              <Link to="/login" className="home-login-link">Log in</Link>
-              <Link to="/register" className="home-get-started">Get Started <span aria-hidden>→</span></Link>
+              <Link to="/login" className="home-login-link">تسجيل الدخول</Link>
+              <Link to="/register" className="home-get-started">إنشاء حساب <span aria-hidden>←</span></Link>
             </>
           ) : (
             <>
@@ -187,7 +187,7 @@ export default function SiteHeader() {
         <button
           onClick={() => setOpen((v) => !v)}
           className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-surface text-ink lg:hidden"
-          aria-label={isHome ? 'Menu' : 'القائمة'}
+          aria-label={isHome ? 'القائمة' : 'القائمة'}
           aria-expanded={open}
         >
           <span className="flex w-4 flex-col gap-[5px]">
@@ -211,10 +211,10 @@ export default function SiteHeader() {
           <nav className={isHome ? 'flex flex-col items-stretch' : 'flex flex-col'}>
             {isHome ? (
               <>
-                <NavLink to="/jobs" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">Jobs</NavLink>
-                <NavLink to="/remote" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">Remote</NavLink>
-                <NavLink to="/students" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">Students</NavLink>
-                <NavLink to="/tools" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">Career Tools</NavLink>
+                <NavLink to="/jobs" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">الوظائف</NavLink>
+                <NavLink to="/remote" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">عن بُعد</NavLink>
+                <NavLink to="/students" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">للطلاب</NavLink>
+                <NavLink to="/tools" className="anim-fade-up border-b border-line py-4 text-lg font-bold text-ink">أدوات مهنية</NavLink>
               </>
             ) : (
               <>
@@ -245,43 +245,43 @@ export default function SiteHeader() {
             {session ? (
               <>
                 <Link to="/profile" className="ez-btn ez-btn-primary w-full py-3.5">
-                  {isHome ? 'Profile' : (settings.nav_profile_label?.trim() || 'ملفي المهني')}
+                  {settings.nav_profile_label?.trim() || 'ملفي المهني'}
                 </Link>
                 <Link to="/applications" className="ez-btn ez-btn-ghost w-full py-3.5">
-                  {isHome ? 'Applications' : 'تقديماتي'}
+                  تقديماتي
                 </Link>
                 <Link to="/saved" className="ez-btn ez-btn-ghost w-full py-3.5">
-                  {isHome ? 'Saved jobs' : 'الوظائف المحفوظة'}
+                  الوظائف المحفوظة
                 </Link>
                 <Link to="/tasks" className="ez-btn ez-btn-ghost w-full py-3.5">
-                  EzyTasks
+                  مهام EzyTasks
                 </Link>
                 {isPublisher && (
                   <Link to="/publish" className="ez-btn ez-btn-ghost w-full py-3.5">
-                    {isHome ? 'EzyPublish' : 'مساحة EzyPublish'}
+                    مساحة EzyPublish
                   </Link>
                 )}
                 {isAdmin && (
                   <Link to="/admin" className="ez-btn ez-btn-ghost w-full py-3.5">
-                    {isHome ? 'Admin' : (settings.nav_admin_label?.trim() || 'لوحة الإدارة')}
+                    {settings.nav_admin_label?.trim() || 'لوحة الإدارة'}
                   </Link>
                 )}
                 {!isAdmin && isPublisher && (
                   <Link to="/dashboard" className="ez-btn ez-btn-ghost w-full py-3.5">
-                    {isHome ? 'Dashboard' : (settings.nav_dashboard_label?.trim() || 'لوحة التحكم')}
+                    {settings.nav_dashboard_label?.trim() || 'لوحة التحكم'}
                   </Link>
                 )}
                 <button onClick={handleSignOut} className="ez-btn ez-btn-ghost w-full py-3.5 text-danger">
-                  {isHome ? 'Log out' : (settings.nav_logout_label?.trim() || 'تسجيل الخروج')}
+                  {settings.nav_logout_label?.trim() || 'تسجيل الخروج'}
                 </button>
               </>
             ) : (
               <>
                 <Link to="/login" className={isHome ? 'home-mobile-login' : 'ez-btn ez-btn-primary w-full py-3.5'}>
-                  {isHome ? 'Log in' : (settings.nav_login_label?.trim() || 'تسجيل الدخول')}
+                  {settings.nav_login_label?.trim() || 'تسجيل الدخول'}
                 </Link>
                 <Link to="/register" className={isHome ? 'home-mobile-get-started' : 'ez-btn ez-btn-ghost w-full py-3.5'}>
-                  {isHome ? 'Get Started →' : (settings.nav_register_label?.trim() || 'إنشاء حساب')}
+                  {settings.nav_register_label?.trim() || 'إنشاء حساب'}
                 </Link>
               </>
             )}

@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  ArrowRight,
+  ArrowLeft,
+  Briefcase,
   Database,
   Globe2,
   GraduationCap,
@@ -10,7 +11,6 @@ import {
   Search,
   Sparkles,
   UserRound,
-  Briefcase,
 } from 'lucide-react';
 import type { Job } from '../../types';
 import { emptyFilters } from '../../types';
@@ -25,17 +25,24 @@ type Props = {
   settings: Record<string, string>;
 };
 
-type Chip = { label: string; query: string; icon: React.ReactNode };
-
-const englishCopy = (value: string | undefined, fallback: string) => {
-  const text = value?.trim();
-  return text && !/[\u0600-\u06FF]/.test(text) ? text : fallback;
+type QuickChip = {
+  label: string;
+  query: string;
+  icon: React.ReactNode;
 };
+
+const defaultChips: QuickChip[] = [
+  { label: 'عن بُعد', query: 'remote', icon: <Globe2 size={13} /> },
+  { label: 'للطلاب', query: 'students', icon: <GraduationCap size={13} /> },
+  { label: 'بدون خبرة', query: 'no experience', icon: <UserRound size={13} /> },
+  { label: 'خدمة عملاء', query: 'customer support', icon: <Headphones size={13} /> },
+  { label: 'إدخال بيانات', query: 'data entry', icon: <Database size={13} /> },
+  { label: 'الذكاء الاصطناعي', query: 'ai', icon: <Sparkles size={13} /> },
+];
 
 export default function EzyHero({ q, setQ, jobs, settings }: Props) {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [focused, setFocused] = useState(false);
   const [locationQuery, setLocationQuery] = useState('');
@@ -51,55 +58,14 @@ export default function EzyHero({ q, setQ, jobs, settings }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  useEffect(() => {
-    const root = heroRef.current;
-    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    let raf = 0;
-
-    const update = () => {
-      raf = 0;
-      const rect = root.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.max(0, Math.min(1, -rect.top / travel));
-      root.style.setProperty('--hero-progress', progress.toFixed(4));
-    };
-
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, []);
-
-  const chips: Chip[] = useMemo(() => {
+  const chips = useMemo<QuickChip[]>(() => {
     const configured = settings.home_search_chips
       ?.split(/\r?\n|,/)
       .map((item) => item.trim())
       .filter(Boolean) ?? [];
-
-    if (configured.length && configured.every((item) => !/[\u0600-\u06FF]/.test(item))) {
-      return configured.slice(0, 6).map((label) => ({
-        label,
-        query: label,
-        icon: <Sparkles size={13} strokeWidth={1.9} />,
-      }));
-    }
-
-    return [
-      { label: 'Remote', query: 'remote', icon: <Globe2 size={13} strokeWidth={1.9} /> },
-      { label: 'Students', query: 'students', icon: <GraduationCap size={13} strokeWidth={1.9} /> },
-      { label: 'No Experience', query: 'no experience', icon: <UserRound size={13} strokeWidth={1.9} /> },
-      { label: 'Customer Support', query: 'customer support', icon: <Headphones size={13} strokeWidth={1.9} /> },
-      { label: 'Data Entry', query: 'data entry', icon: <Database size={13} strokeWidth={1.9} /> },
-      { label: 'AI', query: 'ai', icon: <Sparkles size={13} strokeWidth={1.9} /> },
-    ];
+    return configured.length
+      ? configured.slice(0, 6).map((label) => ({ label, query: label, icon: <Sparkles size={13} /> }))
+      : defaultChips;
   }, [settings.home_search_chips]);
 
   const liveMatches = useMemo(() => {
@@ -109,48 +75,52 @@ export default function EzyHero({ q, setQ, jobs, settings }: Props) {
   }, [jobs, q]);
 
   const categoryCards = useMemo(() => {
-    const ids = ['development', 'marketing', 'design', 'support', 'education'];
-    const labels = [
-      ['Technology', 'Software · AI · Data', 'blue'],
-      ['Business', 'Marketing · Sales · Operations', 'mint'],
-      ['Creative', 'Design · Writing · Content', 'violet'],
-      ['Support', 'Customer Support · Virtual Assistant', 'sky'],
-      ['Students', 'Internships · Entry Level', 'green'],
+    const counts = new Map<string, number>();
+    for (const job of jobs) counts.set(job.category, (counts.get(job.category) ?? 0) + 1);
+
+    const presets = [
+      ['development', 'التقنية', 'برمجة · ذكاء اصطناعي · بيانات', 'blue'],
+      ['marketing', 'الأعمال', 'تسويق · مبيعات · تشغيل', 'mint'],
+      ['design', 'الإبداع', 'تصميم · كتابة · محتوى', 'violet'],
+      ['support', 'الدعم', 'خدمة عملاء · مساعد افتراضي', 'sky'],
+      ['education', 'الطلاب', 'تدريب · بدايات مهنية', 'green'],
     ] as const;
 
-    return ids.map((id, i) => {
+    return presets.map(([id, label, detail, tone]) => {
       const category = CATEGORIES.find((item) => item.id === id);
       if (!category) return null;
       return {
         category,
-        label: labels[i][0],
-        detail: labels[i][1],
-        tone: labels[i][2],
+        label,
+        detail,
+        tone,
+        count: counts.get(category.id) ?? 0,
       };
     }).filter(Boolean) as Array<{
       category: (typeof CATEGORIES)[number];
       label: string;
       detail: string;
       tone: string;
+      count: number;
     }>;
-  }, []);
+  }, [jobs]);
+
+  const featured = jobs.find((job) => job.eligibility === 'open') ?? jobs[0];
+  const featuredTitle = featured?.titleAr || 'أخصائي دعم عملاء';
+  const featuredCompany = featured?.company || 'فرصة عالمية';
 
   const countryCount = useMemo(
-    () => new Set(jobs.flatMap((job) => job.eligibleRegions).filter((region) => region && region !== 'worldwide')).size,
+    () => new Set(jobs.flatMap((job) => job.eligibleRegions).filter(Boolean)).size,
     [jobs],
   );
   const remoteCount = useMemo(() => jobs.filter((job) => job.workMode === 'remote').length, [jobs]);
-
-  const featured = jobs.find((job) => job.eligibility === 'open') ?? jobs[0];
-  const featuredTitle = featured?.titleAr || 'Product Designer';
-  const featuredCompany = featured?.company || 'Global Opportunity';
 
   const submitSearch = (event: React.FormEvent) => {
     event.preventDefault();
     const params = new URLSearchParams();
     if (q.trim()) params.set('q', q.trim());
     if (locationQuery.trim()) params.set('location', locationQuery.trim());
-    navigate('/jobs' + (params.toString() ? `?${params.toString()}` : ''));
+    navigate('/jobs' + (params.toString() ? '?' + params.toString() : ''));
   };
 
   const chooseQuery = (query: string) => {
@@ -158,115 +128,112 @@ export default function EzyHero({ q, setQ, jobs, settings }: Props) {
     navigate('/jobs?q=' + encodeURIComponent(query));
   };
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const stage = stageRef.current;
-    if (!stage || !window.matchMedia('(pointer: fine)').matches) return;
-    const rect = stage.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    stage.style.setProperty('--tilt-x', `${y * -4}deg`);
-    stage.style.setProperty('--tilt-y', `${x * 5}deg`);
-    stage.style.setProperty('--glow-x', `${50 + x * 30}%`);
-    stage.style.setProperty('--glow-y', `${50 + y * 30}%`);
-  };
-
-  const resetPointer = () => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    stage.style.setProperty('--tilt-x', '0deg');
-    stage.style.setProperty('--tilt-y', '0deg');
-    stage.style.setProperty('--glow-x', '52%');
-    stage.style.setProperty('--glow-y', '38%');
-  };
-
   return (
-    <section ref={heroRef} className="ezy-hero" dir="ltr">
+    <section ref={heroRef} className="ezy-hero" dir="rtl">
       <div className="ezy-hero__background" aria-hidden="true">
         <div className="ezy-hero__aurora ezy-hero__aurora--a" />
         <div className="ezy-hero__aurora ezy-hero__aurora--b" />
         <div className="ezy-hero__cloud ezy-hero__cloud--a" />
         <div className="ezy-hero__cloud ezy-hero__cloud--b" />
-        <div className="ezy-hero__grid" />
       </div>
 
       <div className="ezy-hero__container">
         <div className="ezy-hero__content">
           <div className="ezy-hero__eyebrow">
             <span className="ezy-hero__eyebrow-dot" />
-            {englishCopy(settings.home_hero_eyebrow, 'Better Jobs. A Brighter Future.')}
+            {settings.home_hero_eyebrow?.trim() || 'فرص أفضل. مستقبل أكثر وضوحاً.'}
           </div>
 
           <h1 className="ezy-hero__title">
-            <span>Find the job</span>
-            <span>that truly <em>fits</em> you.</span>
+            <span>اكتشف الوظيفة</span>
+            <span>التي <em>تناسبك</em> فعلاً.</span>
           </h1>
 
+          <p className="ezy-hero__subtitle">لا تكتفي بعرض الوظائف. افهمها، وقارنها، واعرف فرصتك قبل أن تتقدم.</p>
+
           <p className="ezy-hero__lead">
-            {englishCopy(
-              settings.home_lead,
-              'EzyJobs helps you discover the right opportunities based on your skills, experience, language and location — and makes the path to apply easier.',
-            )}
+            {settings.home_lead?.trim() || 'نجمع الوظائف من المصادر الموثوقة، نترجمها ونبسطها، ثم نوضح لك الأهلية والخبرة واللغة والموقع قبل التقديم.'}
           </p>
 
           <form className={`ezy-search ${focused ? 'is-focused' : ''}`} onSubmit={submitSearch}>
             <div className="ezy-search__fields">
-              <div className="ezy-search__field">
+              <label className="ezy-search__field">
                 <Search size={18} strokeWidth={1.8} />
-                <div>
-                  <span>Job title, skill or keyword</span>
+                <span>
+                  <small>ما الوظيفة التي تبحث عنها؟</small>
                   <input
                     ref={inputRef}
                     value={q}
                     onChange={(event) => setQ(event.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => window.setTimeout(() => setFocused(false), 160)}
-                    placeholder="e.g. Graphic Designer, Python, Marketing..."
-                    aria-label="Job title, skill or keyword"
+                    placeholder="مثال: خدمة عملاء، تصميم، إدخال بيانات"
+                    aria-label="ابحث عن وظيفة"
                   />
-                </div>
+                </span>
                 <kbd>/</kbd>
-              </div>
+              </label>
 
-              <div className="ezy-search__divider" />
+              <span className="ezy-search__divider" aria-hidden="true" />
 
-              <div className="ezy-search__field ezy-search__field--location">
+              <label className="ezy-search__field ezy-search__field--location">
                 <MapPin size={18} strokeWidth={1.8} />
-                <div>
-                  <span>Location</span>
+                <span>
+                  <small>الموقع</small>
                   <input
                     value={locationQuery}
                     onChange={(event) => setLocationQuery(event.target.value)}
-                    placeholder="Remote / Worldwide / Any"
-                    aria-label="Location"
+                    placeholder="عن بُعد / حول العالم / أي مكان"
+                    aria-label="الموقع"
                   />
-                </div>
-              </div>
+                </span>
+              </label>
 
               <button type="submit" className="ezy-search__button">
-                Search jobs <ArrowRight size={16} />
+                ابحث عن الوظائف
+                <ArrowLeft size={16} />
               </button>
             </div>
 
             {focused && (
               <div className="ezy-search__popover">
-                <div className="ezy-search__popover-title">{q.trim() ? 'LIVE MATCHES' : 'QUICK SEARCH'}</div>
-                {q.trim() && liveMatches.length ? (
+                <div className="ezy-search__popover-title">
+                  {q.trim() ? 'نتائج مطابقة مباشرة' : 'ابدأ بسرعة'}
+                </div>
+
+                {q.trim() && liveMatches.length > 0 ? (
                   liveMatches.map((job) => (
-                    <Link key={job.id} to={'/jobs/' + job.slug} className="ezy-search__result" onMouseDown={(event) => event.preventDefault()}>
+                    <Link
+                      key={job.id}
+                      to={'/jobs/' + job.slug}
+                      className="ezy-search__result"
+                      onMouseDown={(event) => event.preventDefault()}
+                    >
                       <span className="ezy-search__result-dot" />
                       <span className="min-w-0 flex-1">
-                        <strong>{job.titleOriginal || job.titleAr}</strong>
+                        <strong>{job.titleAr}</strong>
                         <small>{job.company}</small>
                       </span>
-                      <span>View</span>
+                      <span>عرض</span>
                     </Link>
                   ))
                 ) : (
-                  chips.map((chip) => (
-                    <button key={chip.label} type="button" className="ezy-search__quick" onMouseDown={(event) => { event.preventDefault(); chooseQuery(chip.query); }}>
-                      {chip.icon}<span>{chip.label}</span>
-                    </button>
-                  ))
+                  <div className="ezy-search__quick-grid">
+                    {chips.map((chip) => (
+                      <button
+                        key={chip.label}
+                        type="button"
+                        className="ezy-search__quick"
+                        onMouseDown={(event) => {
+                          event.preventDefault();
+                          chooseQuery(chip.query);
+                        }}
+                      >
+                        {chip.icon}
+                        <span>{chip.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
             )}
@@ -283,95 +250,105 @@ export default function EzyHero({ q, setQ, jobs, settings }: Props) {
 
           <div className="ezy-hero__stats">
             <div>
-              <span className="ezy-hero__stat-icon"><Briefcase size={18} /></span>
-              <strong>{jobs.length.toLocaleString()}</strong>
-              <small>{englishCopy(settings.home_stat_jobs, 'Job opportunities')}</small>
+              <span className="ezy-hero__stat-icon"><Briefcase size={17} /></span>
+              <strong>{jobs.length.toLocaleString('ar-DZ')}</strong>
+              <small>فرصة مفهرسة</small>
             </div>
             <i />
             <div>
-              <span className="ezy-hero__stat-icon"><Globe2 size={18} /></span>
-              <strong>{countryCount.toLocaleString()}</strong>
-              <small>{englishCopy(settings.home_stat_countries, 'Countries & regions')}</small>
+              <span className="ezy-hero__stat-icon"><Globe2 size={17} /></span>
+              <strong>{countryCount.toLocaleString('ar-DZ')}</strong>
+              <small>دولة ومنطقة</small>
             </div>
             <i />
             <div>
-              <span className="ezy-hero__stat-icon"><Sparkles size={18} /></span>
-              <strong>{remoteCount.toLocaleString()}</strong>
-              <small>{englishCopy(settings.home_stat_remote, 'Remote opportunities')}</small>
+              <span className="ezy-hero__stat-icon"><Sparkles size={17} /></span>
+              <strong>{remoteCount.toLocaleString('ar-DZ')}</strong>
+              <small>فرصة عن بُعد</small>
             </div>
           </div>
         </div>
 
-        <div
-          ref={stageRef}
-          className="ezy-hero__stage"
-          onPointerMove={handlePointerMove}
-          onPointerLeave={resetPointer}
-        >
-          <div className="ezy-hero__stage-glow" aria-hidden="true" />
-          <div className="ezy-hero__ring ezy-hero__ring--outer" aria-hidden="true" />
-          <div className="ezy-hero__ring ezy-hero__ring--inner" aria-hidden="true" />
-          <div className="ezy-hero__island-shadow" aria-hidden="true" />
-          <div className="ezy-hero__mascot">
-            <img src="/hero-mascot-scene.jpg" alt="" draggable={false} />
-          </div>
+        <div className="ezy-hero__stage-wrap">
+          <div className="ezy-hero__stage">
+            <div className="ezy-hero__stage-glow" aria-hidden="true" />
+            <div className="ezy-hero__ring ezy-hero__ring--outer" aria-hidden="true" />
+            <div className="ezy-hero__ring ezy-hero__ring--inner" aria-hidden="true" />
 
-          <div className="ezy-float-card ezy-float-card--marketing">
-            <div className="ezy-float-card__icon"><Sparkles size={16} /></div>
-            <div><strong>Marketing Specialist</strong><small>Remote · Worldwide</small></div>
-            <b>85%</b>
-          </div>
+            <div className="ezy-hero__mascot">
+              <img src="/hero-mascot-scene.jpg" alt="" draggable={false} />
+            </div>
 
-          <div className="ezy-float-card ezy-float-card--data">
-            <div className="ezy-float-card__icon"><Database size={16} /></div>
-            <div><strong>Data Analyst</strong><small>Remote · Worldwide</small></div>
-            <b>87%</b>
-          </div>
+            <div className="ezy-float-card ezy-float-card--marketing">
+              <div className="ezy-float-card__icon"><Sparkles size={15} /></div>
+              <div><strong>أخصائي تسويق</strong><small>عن بُعد · حول العالم</small></div>
+              <b>85%</b>
+            </div>
 
-          <div className="ezy-feature-card">
-            <div className="ezy-feature-card__top">
-              <span className="ezy-feature-card__badge">E</span>
-              <div>
-                <strong>{featuredTitle}</strong>
-                <small>{featuredCompany} · Remote</small>
+            <div className="ezy-float-card ezy-float-card--data">
+              <div className="ezy-float-card__icon"><Database size={15} /></div>
+              <div><strong>محلل بيانات</strong><small>عن بُعد · حول العالم</small></div>
+              <b>87%</b>
+            </div>
+
+            <div className="ezy-feature-card">
+              <div className="ezy-feature-card__top">
+                <span className="ezy-feature-card__badge">E</span>
+                <div>
+                  <strong>{featuredTitle}</strong>
+                  <small>{featuredCompany} · عن بُعد</small>
+                </div>
+                <b>92%</b>
               </div>
-              <b>92%</b>
-            </div>
-            <div className="ezy-feature-card__chips"><span>Remote</span><span>Skills match</span><span>English B2</span></div>
-            <div className="ezy-feature-card__checks">
-              <span>✓ Remote work</span>
-              <span>✓ Your skills match</span>
-              <span>✓ Clear eligibility</span>
-            </div>
-            <Link to={featured ? '/jobs/' + featured.slug : '/jobs'}>View opportunity <ArrowRight size={13} /></Link>
-          </div>
 
-          <div className="ezy-hero__signal-stack" aria-hidden="true">
-            <span><Sparkles size={11} /> Skills</span>
-            <span><Globe2 size={11} /> Language</span>
-            <span><MapPin size={11} /> Location</span>
-            <span><Briefcase size={11} /> Experience</span>
-          </div>
+              <div className="ezy-feature-card__chips">
+                <span>عن بُعد</span>
+                <span>مطابقة المهارات</span>
+                <span>إنجليزية B2</span>
+              </div>
 
-          <div className="ezy-hero__orbit-dots" aria-hidden="true">
-            <i /><i /><i /><i /><i />
+              <div className="ezy-feature-card__checks">
+                <span>✓ عمل عن بُعد</span>
+                <span>✓ مهاراتك متوافقة</span>
+                <span>✓ الأهلية واضحة</span>
+              </div>
+
+              <Link to={featured ? '/jobs/' + featured.slug : '/jobs'}>
+                عرض الفرصة
+                <ArrowLeft size={13} />
+              </Link>
+            </div>
+
+            <div className="ezy-hero__signal-stack" aria-hidden="true">
+              <span><Sparkles size={11} /> المهارات</span>
+              <span><Globe2 size={11} /> اللغة</span>
+              <span><MapPin size={11} /> الموقع</span>
+              <span><Briefcase size={11} /> الخبرة</span>
+            </div>
+
+            <div className="ezy-hero__orbit-dots" aria-hidden="true">
+              <i /><i /><i /><i /><i />
+            </div>
           </div>
         </div>
       </div>
 
       <div className="ezy-hero__categories">
         <div className="ezy-hero__categories-intro">
-          <span>EXPLORE OPPORTUNITIES</span>
-          <h2>Find your direction<span>.</span></h2>
-          <p>Explore jobs by field and move from discovery to the right opportunity with less noise.</p>
+          <span>استكشف الفرص</span>
+          <h2>اعثر على اتجاهك<span>.</span></h2>
+          <p>ابدأ من المجال الذي يناسبك، ثم انتقل إلى الفرص الأقرب إلى خبرتك وهدفك.</p>
         </div>
+
         <div className="ezy-hero__categories-grid">
-          {categoryCards.map(({ category, label, detail, tone }) => (
+          {categoryCards.map(({ category, label, detail, tone, count }) => (
             <Link key={category.id} to={'/field/' + category.slug} className={`ezy-category-card ezy-category-card--${tone}`}>
               <div className="ezy-category-card__shape" aria-hidden="true"><span /></div>
+              <small>مجال {label}</small>
               <strong>{label}</strong>
-              <small>{detail}</small>
-              <ArrowRight size={14} />
+              <p>{detail}</p>
+              <span className="ezy-category-card__count">{count.toLocaleString('ar-DZ')} فرصة</span>
+              <ArrowLeft size={13} />
             </Link>
           ))}
         </div>

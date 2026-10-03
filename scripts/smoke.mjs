@@ -40,7 +40,7 @@ try {
     : [];
 
   const checks = [
-    ['/', ['EzyJobs', 'LIVE INDEX SIGNALS']],
+    ['/', ['EzyJobs', 'استكشف الفرص']],
     ['/jobs', ['تصفية', 'المجال']],
     ['/students', ['الطلاب']],
     ['/no-experience', ['خبرة']],

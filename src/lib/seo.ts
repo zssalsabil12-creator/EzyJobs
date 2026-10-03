@@ -32,6 +32,40 @@ const setCanonical = (href: string) => {
   el.href = href;
 };
 
+const PRIVATE_PREFIXES = [
+  '/admin',
+  '/dashboard',
+  '/applications',
+  '/profile',
+  '/saved',
+  '/tasks',
+  '/application-kit',
+];
+
+const shouldNoIndexPath = (pathname: string, search: string) => {
+  if (
+    PRIVATE_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix + '/')) ||
+    pathname === '/login' ||
+    pathname === '/register' ||
+    pathname === '/publish'
+  ) {
+    return true;
+  }
+
+  // Prevent an explosion of low-value faceted/search-result URLs.
+  const explorerPaths = new Set([
+    '/jobs',
+    '/students',
+    '/no-experience',
+    '/remote',
+    '/en/jobs',
+    '/en/remote-jobs',
+    '/fr/emplois',
+    '/fr/emploi-teletravail',
+  ]);
+  return Boolean(search) && explorerPaths.has(pathname);
+};
+
 export function usePageMeta(meta?: Meta) {
   useEffect(() => {
     if (!meta) return;
@@ -43,12 +77,18 @@ export function usePageMeta(meta?: Meta) {
     }
     setMeta('meta[property="og:title"]', 'property', 'og:title', meta.title);
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', meta.title);
-    setMeta('meta[name="robots"]', 'name', 'robots', meta.noIndex ? 'noindex, nofollow' : 'index, follow');
+    setMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
+    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'EzyJobs');
+    setMeta('meta[property="og:image"]', 'property', 'og:image', window.location.origin + '/hero-mascot-scene.jpg');
+    setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+    setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', window.location.origin + '/hero-mascot-scene.jpg');
     const locale = meta.locale || 'ar';
     document.documentElement.lang = locale;
     document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+    const shouldNoIndex = Boolean(meta.noIndex) || shouldNoIndexPath(window.location.pathname, window.location.search);
+    setMeta('meta[name="robots"]', 'name', 'robots', shouldNoIndex ? 'noindex, follow' : 'index, follow');
     setMeta('meta[property="og:locale"]', 'property', 'og:locale', locale === 'fr' ? 'fr_FR' : locale === 'en' ? 'en_US' : 'ar_AR');
-    const canonical = meta.canonical || window.location.origin + window.location.pathname;
+    const canonical = (meta.canonical || window.location.origin + window.location.pathname).replace(/\/$/, '') || window.location.origin + '/';
     setCanonical(canonical);
     setMeta('meta[property="og:url"]', 'property', 'og:url', canonical);
     document.head.querySelectorAll<HTMLLinkElement>('link[data-ezy-hreflang="true"]').forEach((el) => el.remove());

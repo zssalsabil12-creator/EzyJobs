@@ -35,7 +35,7 @@ export default function SiteFooter() {
                   ezyjobs
                 </span>
                 <span className="block text-[10px] font-medium text-white/40">
-                  <span className="tracking-in inline-block">{settings.footer_tagline?.trim() || 'REMOTE WORK FOR ARAB SPEAKERS'}</span>
+                  <span className="tracking-in inline-block">{settings.footer_tagline?.trim() || 'وظائف عن بُعد للناطقين بالعربية'}</span>
                 </span>
               </span>
             </div>

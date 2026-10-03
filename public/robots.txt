@@ -1,10 +1,16 @@
 User-agent: *
 Allow: /
 
-# صفحات لا نريد أرشفتها
+# صفحات الحساب والمساحات الداخلية
+Disallow: /admin
+Disallow: /applications
+Disallow: /application-kit
 Disallow: /dashboard
 Disallow: /login
 Disallow: /register
+Disallow: /profile
 Disallow: /saved
+Disallow: /tasks
+Disallow: /publish
 
 Sitemap: https://ezyjobs.com/sitemap.xml

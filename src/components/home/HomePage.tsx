@@ -11,23 +11,24 @@ import OrbitMark from '../art/OrbitMark';
 import { usePublicSiteSettings } from '../../lib/siteSettings';
 import AdSenseSlot from '../monetization/AdSenseSlot';
 import { usePageMeta } from '../../lib/seo';
+import { homeJsonLd } from '../../lib/seoI18n';
 import EzyHero from './EzyHero';
 import SpatialDiscovery from './SpatialDiscovery';
 import CinematicJobOrbit from './CinematicJobOrbit';
 import './HomeSurface.css';
 
 const ticker = [
-  'Remote opportunities',
-  'Clear eligibility signals',
-  'Worldwide and local filters',
-  'Student-friendly roles',
-  'No-experience opportunities',
-  'Part-time and freelance work',
+  'فرص عن بُعد',
+  'أهلية واضحة قبل التقديم',
+  'فلاتر حسب الدولة والمجال',
+  'وظائف مناسبة للطلاب',
+  'فرص بدون خبرة',
+  'دوام جزئي وعمل حر',
 ];
 
 const englishCopy = (value: string | undefined, fallback: string) => {
   const text = value?.trim();
-  return text && !/[\u0600-\u06FF]/.test(text) ? text : fallback;
+  return text && /[\u0600-\u06FF]/.test(text) ? text : fallback;
 };
 
 const englishSetting = (settings: Record<string, string>, key: string, fallback: string) =>
@@ -58,8 +59,17 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
   }, []);
 
   usePageMeta({
-    title: englishSetting(settings, 'seo_site_title', 'EzyJobs Ã¢â‚¬â€ Find remote and flexible jobs that fit you'),
-    description: englishSetting(settings, 'seo_site_description', 'Discover remote, flexible and student-friendly opportunities with clear job matching, eligibility signals and direct application links.'),
+    title: englishCopy(settings.seo_site_title, 'EzyJobs — وظائف وفرص عمل عن بُعد'),
+    description: englishCopy(settings.seo_site_description, 'اكتشف وظائف عن بُعد وفرصاً مرنة وملائمة للطلاب، مع توضيح الأهلية والمتطلبات ومصدر التقديم قبل اتخاذ قرارك.'),
+    canonical: 'https://ezyjobs.com/',
+    alternates: {
+      ar: 'https://ezyjobs.com/',
+      en: 'https://ezyjobs.com/en/jobs',
+      fr: 'https://ezyjobs.com/fr/emplois',
+      'x-default': 'https://ezyjobs.com/',
+    },
+    locale: 'ar',
+    jsonLd: homeJsonLd(),
   });
 
   const remoteNoExp = useMemo(
@@ -81,7 +91,7 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
   const geoKnown = useMemo(() => jobs.filter((j) => j.eligibility === 'open' || j.eligibility === 'limited').length, [jobs]);
 
   return (
-    <div className="ezy-home-shell" dir="ltr">
+    <div className="ezy-home-shell" dir="rtl">
       <div className="ezy-scroll-progress" aria-hidden="true"><span /></div>
       {englishCopy(settings.announcement, '').trim() && (
         <div className="ezy-home-announcement border-b border-line px-5 py-3 text-center text-[12px] font-semibold text-muted">
@@ -96,12 +106,12 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
         <div className="mx-auto max-w-[1240px] px-5 lg:px-10">
           <Reveal>
             <SectionHead
-              eyebrow={englishSetting(settings, 'home_eligibility_eyebrow', 'Verified eligibility')}
-              title={<span>Jobs with <span className="text-gradient">clear fit signals</span> before you apply</span>}
-              lead={englishSetting(settings, 'home_eligibility_lead', 'We surface the important details early: location eligibility, experience level, working style and the requirements that matter before you open the application.')} 
+              eyebrow={englishSetting(settings, 'home_eligibility_eyebrow', 'أهلية واضحة')}
+              title={<span>وظائف مع <span className="text-gradient">إشارات واضحة</span> قبل التقديم</span>}
+              lead={englishSetting(settings, 'home_eligibility_lead', 'نوضح لك الأهلية الجغرافية والخبرة ونمط العمل والمتطلبات المهمة قبل أن تفتح رابط التقديم.')}
               action={
                 <Link to="/jobs" className="ez-btn ez-btn-ghost px-6 py-3 text-sm">
-                  {englishSetting(settings, 'home_all_jobs_label', 'View all jobs')}
+                  {englishSetting(settings, 'home_all_jobs_label', 'عرض جميع الوظائف')}
                 </Link>
               }
             />
@@ -110,7 +120,7 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
             <div className="grid gap-4 lg:grid-cols-2">
               {remoteNoExp.slice(0, 4).map((job, i) => (
                 <Reveal key={job.id} delay={(i % 2) * 100}>
-                  <JobCard job={job} locale="en" />
+                  <JobCard job={job} locale="ar" />
                 </Reveal>
               ))}
             </div>
@@ -139,12 +149,12 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
         <div className="mx-auto max-w-[1240px] px-5 lg:px-10">
           <Reveal>
             <SectionHead
-              eyebrow={englishSetting(settings, 'home_students_eyebrow', 'Student opportunities')}
-              title={<span>Flexible jobs <span className="text-gradient-coral">while you study</span></span>}
-              lead={englishSetting(settings, 'home_students_lead', 'Explore part-time roles, internships and flexible opportunities designed to work around your study schedule.')}
+              eyebrow={englishSetting(settings, 'home_students_eyebrow', 'فرص للطلاب')}
+              title={<span>وظائف مرنة <span className="text-gradient-coral">أثناء الدراسة</span></span>}
+              lead={englishSetting(settings, 'home_students_lead', 'استكشف وظائف جزئية وتدريبات وفرصاً مرنة يمكنها التكيف مع جدولك الدراسي.')}
               action={
                 <Link to="/students" className="ez-btn ez-btn-ghost px-6 py-3 text-sm">
-                  {englishSetting(settings, 'home_students_button', 'Explore student jobs')}
+                  {englishSetting(settings, 'home_students_button', 'استكشف وظائف الطلاب')}
                 </Link>
               }
             />
@@ -153,7 +163,7 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
             <div className="grid gap-4 lg:grid-cols-2">
               {forStudents.slice(0, 4).map((job, i) => (
                 <Reveal key={job.id} delay={(i % 2) * 100}>
-                  <JobCard job={job} locale="en" />
+                  <JobCard job={job} locale="ar" />
                 </Reveal>
               ))}
             </div>
@@ -173,7 +183,7 @@ export default function HomePage({ jobs }: { jobs: Job[] }) {
 function EmptyLine({ text }: { text?: string }) {
   return (
     <div className="ez-panel px-6 py-14 text-center">
-      <p className="text-sm text-muted">{englishCopy(text, 'No matching opportunities right now. Try broadening your search filters.')}</p>
+      <p className="text-sm text-muted">{englishCopy(text, 'لا توجد فرص مطابقة حالياً. جرّب توسيع معايير البحث.')}</p>
     </div>
   );
 }
@@ -186,9 +196,9 @@ function DiscoverySignal({ jobs }: { jobs: Job[] }) {
   const total = Math.max(1, jobs.length);
 
   const signals = [
-    { label: 'Added in the last 7 days', value: recent.length, tone: 'brand', note: 'Recently published roles' },
-    { label: 'Verified eligibility', value: verified, tone: 'positive', note: 'Clear geographic signals' },
-    { label: 'Student-friendly', value: student, tone: 'accent', note: 'Flexible or study-friendly' },
+    { label: 'أضيفت خلال 7 أيام', value: recent.length, tone: 'brand', note: 'وظائف منشورة حديثاً' },
+    { label: 'أهلية موثقة', value: verified, tone: 'positive', note: 'إشارات جغرافية واضحة' },
+    { label: 'مناسبة للطلاب', value: student, tone: 'accent', note: 'مرنة أو مناسبة للدراسة' },
   ] as const;
 
   return (
@@ -198,8 +208,8 @@ function DiscoverySignal({ jobs }: { jobs: Job[] }) {
           <div className="flex items-center gap-3">
             <span className="live-scan shrink-0" />
             <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted">LIVE INDEX SIGNALS</p>
-              <p className="mt-0.5 text-[12px] text-muted">Numbers update with the jobs currently indexed.</p>
+              <p className="text-[10px] font-black tracking-[0.12em] text-muted">إشارات الفهرسة المباشرة</p>
+              <p className="mt-0.5 text-[12px] text-muted">تتحدث الأرقام وفق الوظائف المفهرسة حالياً.</p>
             </div>
           </div>
           {signals.map((signal) => (
@@ -255,24 +265,24 @@ function parsePairSetting(value: string | undefined, fallback: HomePair[]): Home
 }
 
 const pillars = [
-  { n: '01', title: 'Translate & simplify', body: 'Turn dense job descriptions into clear, useful language so you understand the role quickly.' },
-  { n: '02', title: 'Check eligibility', body: 'Go beyond the word Ã¢â‚¬Å“RemoteÃ¢â‚¬Â and surface whether your location is clearly accepted.' },
-  { n: '03', title: 'Clarify seniority', body: 'See whether a role is aimed at students, entry-level candidates, juniors or experienced professionals.' },
-  { n: '04', title: 'Show what matters', body: 'Surface the skills, requirements, languages and working pattern before you apply.' },
+  { n: '01', title: 'نبسّط لك الإعلان', body: 'نحوّل وصف الوظيفة الطويل إلى معلومات واضحة تساعدك على فهم الدور بسرعة.' },
+  { n: '02', title: 'نتحقق من الأهلية', body: 'لا نكتفي بكلمة «عن بُعد»؛ نوضح ما إذا كان موقعك مقبولاً بوضوح.' },
+  { n: '03', title: 'نوضح مستوى الخبرة', body: 'نعرض ما إذا كانت الفرصة للطلاب أو للمبتدئين أو للخبرات المتوسطة والمتقدمة.' },
+  { n: '04', title: 'نُظهر ما يهم', body: 'نبرز المهارات والمتطلبات واللغات ونمط العمل قبل أن تبدأ التقديم.' },
 ];
 
 function ValueProps({ settings }: { settings: Record<string, string> }) {
   const configuredRaw = parsePairSetting(settings.home_pillars, pillars);
-  const configured = configuredRaw.every((item) => !/[\u0600-\u06FF]/.test(item.title + item.body)) ? configuredRaw : pillars;
+  const configured = configuredRaw;
   return (
     <section id="home-value" className="relative py-20 lg:py-28 ezy-value-section">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.07] blur-[120px]" style={{ background: 'radial-gradient(circle, #2f64d6 0%, transparent 70%)' }} />
       <div className="relative mx-auto max-w-[1240px] px-5 lg:px-10">
         <Reveal>
           <SectionHead
-            eyebrow={englishSetting(settings, 'home_value_eyebrow', 'What we do')}
-            title={<span>The difference between a <span className="text-gradient">job list</span> and a clear decision</span>}
-            lead={englishSetting(settings, 'home_value_lead', 'The problem is rarely a lack of jobs. It is noise, unclear language and missing context. EzyJobs brings the useful signals forward.')}
+            eyebrow={englishSetting(settings, 'home_value_eyebrow', 'ماذا نقدم')}
+            title={<span>الفرق بين <span className="text-gradient">قائمة وظائف</span> وقرار واضح</span>}
+            lead={englishSetting(settings, 'home_value_lead', 'المشكلة ليست دائماً نقص الوظائف؛ بل الضوضاء واللغة المعقدة ونقص المعلومات. EzyJobs يضع الإشارات المهمة أمامك.')}
           />
         </Reveal>
 
@@ -293,22 +303,22 @@ function ValueProps({ settings }: { settings: Record<string, string> }) {
 }
 
 const steps = [
-  { n: '1', title: 'Build your profile', body: 'Set your location, level, languages, skills and preferred working pattern.' },
-  { n: '2', title: 'Filter the noise', body: 'Remove roles that do not match your basic requirements.' },
-  { n: '3', title: 'Understand the fit', body: 'See the signals that explain why a role may or may not fit you.' },
-  { n: '4', title: 'Apply at the source', body: 'Open the original posting with a clear path to apply.' },
+  { n: '1', title: 'أنشئ ملفك', body: 'حدد موقعك ومستواك ولغاتك ومهاراتك ونمط العمل المفضل لديك.' },
+  { n: '2', title: 'صفِّ الضوضاء', body: 'استبعد الفرص التي لا تتوافق مع متطلباتك الأساسية.' },
+  { n: '3', title: 'افهم مدى الملاءمة', body: 'شاهد الإشارات التي تشرح لماذا قد تناسبك الوظيفة أو لا تناسبك.' },
+  { n: '4', title: 'قدّم من المصدر', body: 'افتح الإعلان الأصلي واتبع المسار الواضح للتقديم.' },
 ];
 
 function HowItWorksSection({ settings }: { settings: Record<string, string> }) {
   const configuredRaw = parsePairSetting(settings.home_steps_cards, steps);
-  const configured = configuredRaw.every((item) => !/[\u0600-\u06FF]/.test(item.title + item.body)) ? configuredRaw.map((s, i) => ({ n: String(i + 1), title: s.title, body: s.body })) : steps;
+  const configured = configuredRaw.map((s, i) => ({ n: String(i + 1), title: s.title, body: s.body }));
   return (
     <section id="home-process" className="relative py-20 lg:py-28">
       <div className="mx-auto max-w-[1240px] px-5 lg:px-10">
         <Reveal>
           <SectionHead
-            eyebrow={englishSetting(settings, 'home_steps_eyebrow', 'How it works')}
-            title={englishSetting(settings, 'home_steps_title', 'From discovery to application in four steps')}
+            eyebrow={englishSetting(settings, 'home_steps_eyebrow', 'كيف تعمل المنصة')}
+            title={englishSetting(settings, 'home_steps_title', 'من الاكتشاف إلى التقديم في أربع خطوات')}
             align="center"
           />
         </Reveal>
@@ -320,7 +330,7 @@ function HowItWorksSection({ settings }: { settings: Record<string, string> }) {
                   <div className="step-number">
                     <span>0{i + 1}</span>
                   </div>
-                  <span className="step-status">STEP {i + 1}</span>
+                  <span className="step-status">الخطوة {i + 1}</span>
                 </div>
                 <div className="step-progress"><span style={{ width: `${((i + 1) / configured.length) * 100}%` }} /></div>
                 <h3 className="mt-6 text-base font-extrabold text-ink">{s.title}</h3>
@@ -337,25 +347,25 @@ function HowItWorksSection({ settings }: { settings: Record<string, string> }) {
 
 function Transparency({ settings }: { settings: Record<string, string> }) {
   const fallback = [
-    { title: 'Posting facts', body: 'Information taken directly from the original job posting.' },
-    { title: 'EzyJobs analysis', body: 'Our interpretation of fit, requirements and eligibility signals.' },
-    { title: 'Official source', body: 'The employer or original platform where the application is submitted.' },
-    { title: 'Affiliate link', body: 'When a link is monetized, we identify it clearly before you click.' },
+    { title: 'معلومات الإعلان', body: 'معلومات مأخوذة مباشرة من إعلان الوظيفة الأصلي.' },
+    { title: 'تحليل EzyJobs', body: 'قراءة المنصة للملاءمة والمتطلبات وإشارات الأهلية.' },
+    { title: 'المصدر الرسمي', body: 'الجهة أو المنصة الأصلية التي يتم التقديم من خلالها.' },
+    { title: 'الرابط الربحي', body: 'عندما يكون الرابط جزءاً من نموذج ربحي، نوضح ذلك قبل النقر.' },
   ];
   const raw = parsePairSetting(settings.home_transparency_cards, fallback);
-  const cards = raw.every((item) => !/[\u0600-\u06FF]/.test(item.title + item.body)) ? raw : fallback;
+  const cards = raw;
   return (
     <section id="home-trust" className="relative py-20 lg:py-28">
       <div className="mx-auto max-w-[1240px] px-5 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
           <Reveal>
             <div>
-              <span className="ez-eyebrow mb-4">{englishSetting(settings, 'home_transparency_eyebrow', 'Trust & transparency')}</span>
+              <span className="ez-eyebrow mb-4">{englishSetting(settings, 'home_transparency_eyebrow', 'الثقة والشفافية')}</span>
               <h2 className="text-3xl font-black leading-tight text-ink sm:text-4xl">
-                Separate the signals, <span className="text-gradient">show what is factual</span>
+                افصل الإشارات واعرف <span className="text-gradient">ما هو موثق فعلاً</span>
               </h2>
               <p className="mt-5 text-[15px] leading-[1.95] text-muted">
-                {englishSetting(settings, 'home_transparency_lead', 'We distinguish posting facts, our analysis, the official application source and any monetized link so you know exactly what you are seeing.')}
+                {englishSetting(settings, 'home_transparency_lead', 'نميز بين معلومات الإعلان وتحليلنا ومصدر التقديم الرسمي وأي رابط ربحي، حتى تعرف بالضبط ما الذي تراه.')}
               </p>
             </div>
           </Reveal>
@@ -383,28 +393,28 @@ function FinalCta({ confirmed, jobs, settings }: { confirmed: number; jobs: numb
       <Reveal>
         <div id="home-cta" className="ezy-final-cta relative overflow-hidden p-8 text-center lg:p-16">
           <div className="ez-grid-light absolute inset-0" />
-          <div className="anim-drift absolute -top-24 left-1/2 h-64 w-[560px] -translate-x-1/2 rounded-full opacity-25 blur-[100px]" style={{ background: 'radial-gradient(circle, #d4af6a 0%, transparent 70%)' }} />
+          <div className="anim-drift absolute -top-24 left-1/2 h-64 w-[560px] -translate-x-1/2 rounded-full opacity-25 blur-[100px]" style={{ background: 'radial-gradient(circle, #76aefc 0%, transparent 70%)' }} />
           <div className="relative">
             <OrbitMark size={54} className="mx-auto mb-6" />
             <h2 className="text-3xl font-black leading-tight text-ink sm:text-4xl">
-              Start with <span className="text-gradient">three signals</span>
+              ابدأ بـ <span className="text-gradient">ثلاثة مؤشرات</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[15px] leading-[1.9] text-muted">
-              {englishSetting(settings, 'home_final_lead', 'Tell us your location, level and preferred working pattern. We will take it from there.')}
+              {englishSetting(settings, 'home_final_lead', 'أخبرنا بموقعك ومستواك ونمط العمل الذي تفضله، وسنساعدك في تضييق الطريق إلى الفرص الأنسب.')}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Magnetic>
                 <Link to="/jobs" className="ez-btn ez-btn-primary px-8 py-4 text-sm">
-                  {englishSetting(settings, 'home_final_primary', 'Open job search')}
+                  {englishSetting(settings, 'home_final_primary', 'افتح محرك الوظائف')}
                 </Link>
               </Magnetic>
               <Link to="/no-experience" className="ez-btn ez-btn-ghost px-8 py-4 text-sm">
-                {englishSetting(settings, 'home_final_secondary', 'Find no-experience roles')}
+                {englishSetting(settings, 'home_final_secondary', 'وظائف بدون خبرة')}
               </Link>
             </div>
             <p className="mt-8 text-[12px] text-muted">
-              <span className="tnum">{jobs}</span> indexed opportunities Ã¢â‚¬â€ including{' '}
-              <span className="tnum font-bold text-brand-700">{confirmed}</span> with verified eligibility.
+              <span className="tnum">{jobs}</span> فرصة مفهرسة، منها{' '}
+              <span className="tnum font-bold text-brand-700">{confirmed}</span> بإشارات أهلية موثقة.
             </p>
           </div>
         </div>
