@@ -88,10 +88,10 @@ export default function SiteHeader() {
         style={{ transform: `scaleX(${progress})`, boxShadow: '0 0 12px rgba(47,100,214,0.35)' }}
         aria-hidden
       />
-      <div className={`mx-auto flex items-center justify-between px-5 lg:px-10 ${
+      <div className={`home-header__inner mx-auto flex items-center justify-between px-5 lg:px-10 ${
         isHome ? 'max-w-[1380px] py-5 lg:py-6' : 'max-w-[1240px] py-4'
       }`}>
-        <Link to="/" className="group flex items-center gap-3" aria-label="ezyjobs">
+        <Link to="/" className="home-header__brand group flex items-center gap-3" aria-label="EzyJobs">
           <span className="transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105">
             <Logo size={40} />
           </span>
@@ -107,7 +107,7 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="home-header__nav hidden items-center gap-8 lg:flex">
           {isHome ? (
             <>
               <NavLink to="/jobs" className="home-nav-link is-active">Jobs</NavLink>
@@ -134,7 +134,7 @@ export default function SiteHeader() {
           )}
         </nav>
 
-        <div className={`hidden items-center lg:flex ${isHome ? 'gap-7' : 'gap-2'}`}>
+        <div className={`home-header__actions hidden items-center lg:flex ${isHome ? 'gap-7' : 'gap-2'}`}>
           <button
             onClick={openPalette}
             className={isHome ? 'home-header-search' : 'ez-btn ez-btn-ghost group px-3 py-2.5 text-[13px]'}
@@ -187,7 +187,7 @@ export default function SiteHeader() {
         <button
           onClick={() => setOpen((v) => !v)}
           className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-surface text-ink lg:hidden"
-          aria-label="القائمة"
+          aria-label={isHome ? 'Menu' : 'القائمة'}
           aria-expanded={open}
         >
           <span className="flex w-4 flex-col gap-[5px]">

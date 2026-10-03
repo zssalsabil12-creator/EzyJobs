@@ -1153,3 +1153,181 @@ html {
     border-bottom-color: rgba(198,219,240,.52) !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Final homepage header composition
+   Explicit three-zone grid prevents the document's global RTL direction from
+   reversing the visual order on the English homepage.
+   -------------------------------------------------------------------------- */
+
+.home-header {
+  direction: ltr !important;
+  text-align: left;
+}
+
+.home-header .home-header__inner {
+  direction: ltr !important;
+  display: grid !important;
+  grid-template-columns: minmax(210px, 1fr) auto minmax(280px, 1fr);
+  align-items: center;
+  min-height: 76px;
+}
+
+.home-header .home-header__brand {
+  justify-self: start;
+  direction: ltr !important;
+}
+
+.home-header .home-header__nav {
+  justify-self: center;
+  direction: ltr !important;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.home-header .home-header__actions {
+  justify-self: end;
+  direction: ltr !important;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-header .home-nav-link {
+  white-space: nowrap;
+  letter-spacing: -.01em;
+}
+
+.home-header .home-brand-name {
+  white-space: nowrap;
+  color: #0c1847;
+}
+
+.home-header .home-header-search {
+  width: 38px;
+  height: 38px;
+}
+
+.home-header .home-login-link,
+.home-header .home-get-started {
+  white-space: nowrap;
+}
+
+.home-header .home-get-started {
+  min-height: 42px;
+}
+
+@media (max-width: 1180px) {
+  .home-header .home-header__inner {
+    grid-template-columns: minmax(180px, 1fr) auto minmax(230px, 1fr);
+  }
+
+  .home-header .home-header__nav {
+    gap: 24px;
+  }
+
+  .home-header .home-header__actions {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-header .home-header__inner {
+    display: flex !important;
+    min-height: 68px;
+  }
+
+  .home-header .home-header__nav,
+  .home-header .home-header__actions {
+    display: none !important;
+  }
+
+  .home-header .home-header__brand {
+    justify-self: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Global public-home typography normalization
+   One type scale, one weight hierarchy, one language.
+   -------------------------------------------------------------------------- */
+
+.ezy-home-shell,
+.ezy-home-shell input,
+.ezy-home-shell button,
+.ezy-home-shell a {
+  font-variant-numeric: tabular-nums;
+}
+
+.ezy-home-shell .text-ink {
+  color: #10204c;
+}
+
+.ezy-home-shell .text-muted {
+  color: #7184a7;
+}
+
+.ezy-home-shell h1,
+.ezy-home-shell h2,
+.ezy-home-shell h3 {
+  text-wrap: balance;
+}
+
+/* Keep all public homepage cards on the same surface material. */
+.ezy-home-shell .ez-panel,
+.ezy-home-shell .ez-card,
+.ezy-home-shell .ez-value-card,
+.ezy-home-shell .ezy-transparency-card,
+.ezy-home-shell .step-glass,
+.ezy-home-shell .signal-card {
+  border: 1px solid rgba(197,219,240,.86);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(242,248,254,.88));
+  box-shadow:
+    0 28px 64px -48px rgba(27,77,136,.34),
+    inset 0 1px 0 rgba(255,255,255,.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ezy-home-shell .ez-card:hover,
+.ezy-home-shell .step-glass:hover,
+.ezy-home-shell .ezy-transparency-card:hover {
+  border-color: rgba(32,109,237,.24);
+  box-shadow:
+    0 38px 78px -46px rgba(27,77,136,.42),
+    inset 0 1px 0 #fff;
+}
+
+/* Section transitions use a faint horizon rather than hard visual cuts. */
+.ezy-home-section,
+.spatial-discovery,
+.cinematic-orbit {
+  position: relative;
+}
+
+.ezy-home-section::after,
+.spatial-discovery::after,
+.cinematic-orbit::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(54,115,214,.11), rgba(42,174,143,.09), transparent);
+  pointer-events: none;
+}
+
+/* Footer belongs to the same light environment. */
+.site-footer {
+  border-top: 1px solid rgba(184,211,236,.56) !important;
+}
+
+/* Remove accidental dark legacy utility appearance inside public home. */
+.ezy-home-shell .ez-chip-ink {
+  color: #60779f !important;
+  border-color: rgba(194,216,238,.86) !important;
+  background: rgba(255,255,255,.70) !important;
+}
