@@ -14,7 +14,11 @@ npm run release-check
 The release check runs the type check, production build/prerender, and the smoke suite.
 
 ## Hosting
-The project is prepared for Vercel. Vite's current deployment guidance supports importing a Vite project into Vercel; Vercel detects the framework and uses the generated `dist` output. See:
+The project is prepared for Vercel. Vite's current deployment guidance supports importing a Vite project into Vercel; Vercel detects the framework and deploys the generated `dist` output.
+
+The repository also includes a Vercel rewrite so client-side routes such as authentication, account and admin paths do not fail with a direct-request 404; this is a standard SPA fallback pattern for React Router/Vite on Vercel.
+
+Official references:
 https://vite.dev/guide/static-deploy
 https://vercel.com/
 
