@@ -1,0 +1,74 @@
+// 2027 DESIGN TOKENS — EzyJobs Sky Edition
+// ezyjobs — light, high-trust visual system (SMOOTH SCROLL 3D)
+
+:root {
+  /* ---- Sky color system (2027) ---- */
+  --color-sky-50: #eef6ff;
+  --color-sky-100: #dce9ff;
+  --color-sky-200: #b8d2f0;
+  --color-sky-300: #8fb3e0;
+
+  /* ---- Primary accent: Vita blue (#0055FF) ---- */
+  --color-cyan: #0055ff;
+  --color-cyan-600: #003dbf;
+  --color-cyan-800: #002b86;
+
+  /* ---- Ink hierarchy ---- */
+  --color-ink: #111827;      /* headings */
+  --color-ink-2: #1e293b;    /* body / dark mode */
+  --color-body: #3f4a5e;     /* body copy */
+  --color-body-2: #6b7280;   /* captions, helper text */
+  --color-body-3: #9ca3af;   /* placeholders */
+
+  /* ---- Lines & surfaces ---- */
+  --color-line: rgba(17, 24, 39, 0.10);
+  --color-line-soft: rgba(17, 24, 39, 0.06);
+  --color-glass: #ffffff;
+  --color-glass-2: rgba(255, 255, 255, 0.88);
+  --color-glass-3: rgba(255, 255, 255, 0.72);
+
+  /* ---- Signals ---- */
+  --color-mint: #0d9488;
+  --color-mint-soft: rgba(13, 148, 136, 0.08);
+  --color-gold: #f59e0b;
+  --color-amber: #d97706;
+  --color-rose: #f43f5e;
+
+  /* ---- Brand glow layer ---- */
+  --glow-cyan: rgba(0, 85, 255, 0.18);
+  --glow-mint: rgba(13, 148, 136, 0.14);
+
+  /* ---- Typography ---- */
+  --font-sans: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Tajawal', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ---- Spacing/radius ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+}
+
+[data-theme='dark'] {
+  --color-ink: #f1f5f9;
+  --color-ink-2: #e2e8f0;
+  --color-body: #cbd5e1;
+  --color-body-2: #64748b;
+  --color-body-3: #475569;
+  --color-line: rgba(148, 163, 184, 0.12);
+  --color-line-soft: rgba(148, 163, 184, 0.08);
+  --color-glass: rgba(15, 23, 42, 0.88);
+  --color-glass-2: rgba(30, 41, 59, 0.88);
+  --color-glass-3: rgba(51, 65, 85, 0.72);
+  --glow-cyan: rgba(0, 85, 255, 0.14);
+  --glow-mint: rgba(13, 148, 136, 0.10);
+}

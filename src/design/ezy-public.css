@@ -1,0 +1,382 @@
+/* ============================================================
+   EzyJobs 2027 — PUBLIC VISUAL SYSTEM
+   SMOOTH SCROLL · 3D LAYERS · GLASSMORPHIC · SKY EDITION
+   ============================================================ */
+
+/* ── 1. APP SHELL ────────────────────────────────────────────── */
+.public-app {
+  --ezy-blue:       #1558d6;
+  --ezy-blue-light: #2f7ff4;
+  --ezy-blue-deep:  #0d3e9c;
+  --ezy-sky:        #eaf5ff;
+  --ezy-mint:       #22a982;
+  --ezy-mint-deep:  #0d8c6d;
+  --ezy-ink:        #10213f;
+  --ezy-muted:      #6b7d96;
+  --ezy-line:       rgba(24, 55, 98, 0.10);
+  --ezy-glass:      rgba(255, 255, 255, 0.90);
+  --ezy-radius-card: 26px;
+
+  position: relative;
+  overflow-x: clip;
+  background:
+    radial-gradient(ellipse at 6% 12%,  rgba(255, 255, 255, 0.98), transparent 32%),
+    radial-gradient(ellipse at 90% 10%, rgba(124, 194, 255, 0.18), transparent 28%),
+    radial-gradient(ellipse at 80% 80%, rgba(42, 168, 132, 0.07),  transparent 26%),
+    linear-gradient(180deg, #f8fbff 0%, #eef5ff 46%, #f4fbfd 100%);
+}
+
+/* Fixed ambient layer */
+.public-app main {
+  position: relative;
+  isolation: isolate;
+}
+.public-app main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 26%, rgba(82, 157, 245, 0.07), transparent 26%),
+    radial-gradient(circle at 86% 58%, rgba(42, 168, 132, 0.05), transparent 24%);
+}
+
+/* ── 2. NAVIGATION ───────────────────────────────────────────── */
+.public-app .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.78) !important;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 40px -30px rgba(23, 62, 109, 0.28);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+.public-app .site-header .ez-btn-ghost {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ezy-ink);
+}
+.public-app .site-header .ez-btn-primary,
+.public-app .ez-btn-primary {
+  background: linear-gradient(135deg, #1558d6 0%, #2f7ff4 58%, #5a9dff 100%) !important;
+  border-color: rgba(22, 94, 225, 0.20) !important;
+  color: #fff !important;
+  box-shadow:
+    0 16px 36px -20px rgba(37, 99, 235, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+.public-app .ez-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 48px -20px rgba(37, 99, 235, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+.public-app .ez-btn-ghost {
+  border-color: rgba(25, 59, 102, 0.12);
+  background: rgba(255, 255, 255, 0.80);
+  color: #1d3f6f;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.public-app .ez-btn-ghost:hover {
+  border-color: rgba(37, 99, 235, 0.24);
+  background: #fff;
+  color: var(--ezy-blue-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px -12px rgba(37, 99, 235, 0.22);
+}
+
+/* Nav links */
+.public-app nav a {
+  transition: all 0.2s ease;
+}
+
+/* ── 3. CARD & SURFACE SYSTEM ────────────────────────────────── */
+.public-app .ez-card,
+.public-app .ez-panel,
+.public-app .job-card-shell,
+.public-app .filter-dock,
+.public-app .signal-card,
+.public-app .metric-tile {
+  border-color: rgba(255, 255, 255, 0.92) !important;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(244, 249, 255, 0.88)
+  ) !important;
+  box-shadow:
+    0 30px 72px -50px rgba(30, 78, 133, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease !important;
+}
+.public-app .ez-card::after,
+.public-app .ez-panel::after {
+  display: none !important;
+}
+.public-app .ez-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(37, 99, 235, 0.16) !important;
+  box-shadow:
+    0 42px 92px -52px rgba(30, 78, 133, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+}
+
+/* ── 4. FORM CONTROLS ────────────────────────────────────────── */
+.public-app .ez-input {
+  border-color: rgba(22, 54, 96, 0.10) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: var(--ezy-ink) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  transition: all 0.25s ease;
+}
+.public-app .ez-input:focus {
+  border-color: rgba(37, 99, 235, 0.36) !important;
+  box-shadow:
+    0 0 0 4px rgba(37, 99, 235, 0.08),
+    0 18px 38px -28px rgba(37, 99, 235, 0.32);
+}
+.public-app .ez-chip {
+  border-color: rgba(37, 99, 235, 0.10);
+  background: rgba(255, 255, 255, 0.82);
+  color: #58708f;
+  box-shadow: 0 8px 24px -20px rgba(27, 68, 117, 0.24);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.public-app .ez-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.22);
+  color: var(--ezy-blue);
+  box-shadow: 0 12px 28px -18px rgba(37, 99, 235, 0.28);
+}
+
+/* ── 5. TYPOGRAPHY & BRANDING ────────────────────────────────── */
+.public-app .ez-eyebrow {
+  color: var(--ezy-blue);
+}
+.public-app .text-gradient,
+.public-app .text-gradient-coral {
+  background: linear-gradient(105deg, #1558d6 0%, #3a8fff 48%, #22a982 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+.public-app .heading-xl,
+.public-app h1 {
+  letter-spacing: -0.045em;
+}
+
+/* ── 6. HERO SECTION ─────────────────────────────────────────── */
+.public-app .home-hero {
+  background:
+    radial-gradient(ellipse at 17% 42%, rgba(255, 255, 255, 0.98) 0 16%, rgba(255, 255, 255, 0.52) 32%, transparent 52%),
+    radial-gradient(ellipse at 78% 18%, rgba(103, 181, 255, 0.28), transparent 34%),
+    radial-gradient(ellipse at 84% 78%, rgba(116, 226, 196, 0.18), transparent 28%),
+    radial-gradient(ellipse at 40% 85%, rgba(195, 220, 255, 0.14), transparent 30%),
+    linear-gradient(150deg, #f7fbff 0%, #e8f4ff 40%, #eef9fb 100%) !important;
+}
+
+/* ── 7. JOBS EXPLORER ────────────────────────────────────────── */
+.public-app .jobs-explorer-hero {
+  background:
+    radial-gradient(ellipse at 13% 26%, rgba(255, 255, 255, 0.98), transparent 30%),
+    radial-gradient(ellipse at 82% 18%, rgba(117, 187, 255, 0.25), transparent 29%),
+    radial-gradient(ellipse at 90% 78%, rgba(42, 168, 132, 0.10), transparent 24%),
+    linear-gradient(145deg, #f7fbff 0%, #eaf5ff 54%, #f3fbfa 100%) !important;
+}
+.public-app .jobs-explorer-hero .job-hero-grid {
+  border-color: rgba(255, 255, 255, 0.68) !important;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(73, 145, 255, 0.22), transparent 27%),
+    linear-gradient(145deg, #18375f, #102951) !important;
+  box-shadow: 0 44px 92px -52px rgba(16, 45, 86, 0.54) !important;
+}
+
+/* ── 8. SEARCH SURFACES ──────────────────────────────────────── */
+.public-app .public-search-surface,
+.public-app .search-shell {
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 30px 70px -44px rgba(27, 71, 123, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(22px);
+}
+
+/* ── 9. MATCH BANNER ─────────────────────────────────────────── */
+.public-app .match-banner {
+  border-color: rgba(255, 255, 255, 0.92) !important;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(239, 247, 255, 0.88)
+  ) !important;
+  box-shadow: 0 24px 60px -42px rgba(31, 80, 136, 0.32);
+}
+
+/* ── 10. FILTER DOCK ─────────────────────────────────────────── */
+.public-app .filter-dock {
+  position: relative;
+}
+.public-app .filter-dock > * {
+  border-radius: 24px;
+}
+
+/* ── 11. CATEGORY CARDS — 3D CRYSTAL GEMS ───────────────────── */
+.public-app .category-card {
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(240, 247, 255, 0.86) 100%
+  ) !important;
+  border-color: rgba(255, 255, 255, 0.94) !important;
+  box-shadow:
+    0 32px 68px -46px rgba(24, 70, 130, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease,
+    border-color 0.4s ease !important;
+}
+.public-app .category-card:hover {
+  transform: translateY(-12px) rotateX(2deg) !important;
+  border-color: rgba(37, 99, 235, 0.20) !important;
+  box-shadow:
+    0 46px 90px -48px rgba(24, 70, 130, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+}
+.public-app .category-shape {
+  box-shadow:
+    24px 28px 48px -18px rgba(39, 97, 190, 0.46),
+    inset 6px 6px 18px rgba(255, 255, 255, 0.38),
+    inset -10px -12px 22px rgba(31, 79, 155, 0.22) !important;
+}
+
+/* ── 12. SPATIAL DISCOVERY (SCROLL STORY) ────────────────────── */
+.public-app .spatial-discovery {
+  background:
+    radial-gradient(ellipse at 8% 30%, rgba(255, 255, 255, 0.96), transparent 30%),
+    radial-gradient(ellipse at 90% 12%, rgba(103, 181, 255, 0.14), transparent 26%),
+    linear-gradient(160deg, #f2f9ff 0%, #e8f3ff 52%, #f5fbff 100%);
+}
+
+/* ── 13. FOOTER ──────────────────────────────────────────────── */
+.public-app .site-footer {
+  border-top-color: rgba(24, 55, 98, 0.08) !important;
+  background:
+    radial-gradient(circle at 18% 0%,   rgba(74, 145, 243, 0.13), transparent 28%),
+    radial-gradient(circle at 86% 12%,  rgba(42, 168, 132, 0.10), transparent 25%),
+    linear-gradient(155deg, #eef6ff, #f7fbff 62%, #eaf8f4) !important;
+  color: #5e718d !important;
+}
+.public-app .site-footer * {
+  color: inherit;
+}
+.public-app .site-footer .footer-brand-card,
+.public-app .site-footer .ez-chip {
+  border-color: rgba(255, 255, 255, 0.88) !important;
+  background: rgba(255, 255, 255, 0.64) !important;
+  color: #45617f !important;
+}
+.public-app .site-footer a:hover {
+  color: var(--ezy-blue-deep) !important;
+}
+.public-app .site-footer .text-gradient {
+  background: linear-gradient(100deg, #1760e9, #5a9cff, #22a982) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* ── 14. SECTIONS SPACING ─────────────────────────────────────── */
+.public-app .section-spatial,
+.public-app section:not(.home-hero):not(.spatial-discovery) {
+  scroll-margin-top: 90px;
+}
+
+/* ── 15. FOCUS & ACCESSIBILITY ───────────────────────────────── */
+.public-app a:focus-visible,
+.public-app button:focus-visible,
+.public-app input:focus-visible,
+.public-app select:focus-visible,
+.public-app textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── 16. SCROLL REVEAL ANIMATIONS ────────────────────────────── */
+.public-app .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.public-app .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── 17. STEP CARDS ──────────────────────────────────────────── */
+.public-app .step-glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(242, 249, 255, 0.88)
+  ) !important;
+  border-color: rgba(255, 255, 255, 0.92) !important;
+  box-shadow:
+    0 28px 64px -44px rgba(26, 72, 130, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+}
+.public-app .step-glass:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 40px 80px -46px rgba(26, 72, 130, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+}
+
+/* ── 18. JOB CARDS ───────────────────────────────────────────── */
+.public-app .job-card-shell {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease !important;
+}
+.public-app .job-card-shell:hover {
+  transform: translateY(-4px) !important;
+}
+
+/* ── 19. GLASS DECK (Hero right panel) ───────────────────────── */
+.public-app .glass-deck__shell {
+  background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(241,249,255,0.88)) !important;
+  border-color: rgba(255, 255, 255, 0.92) !important;
+  box-shadow:
+    0 40px 90px -52px rgba(22, 72, 135, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+}
+
+/* ── 20. RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .public-app .site-header {
+    background: rgba(255, 255, 255, 0.84);
+  }
+  .public-app .jobs-explorer-hero .job-hero-grid {
+    border-radius: 26px;
+  }
+}
+
+/* ── 21. REDUCED MOTION ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .public-app *,
+  .public-app *::before,
+  .public-app *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

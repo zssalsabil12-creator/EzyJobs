@@ -1,11 +1,19 @@
 {
-  "name": "sandbox-workspace",
+  "name": "ezyjobs",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "typecheck": "tsc --noEmit"
+    "build": "npm run sitemap && vite build && npm run prerender",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "smoke": "node scripts/smoke.mjs",
+    "sitemap": "node scripts/sitemap.mjs",
+    "ingest": "node scripts/ingest-jobs.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "check": "npm run typecheck && npm run smoke",
+    "release-check": "npm run typecheck && npm run build && npm run smoke",
+    "keyword-intelligence": "node scripts/keyword-intelligence.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
@@ -16,6 +24,7 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^11.16.1",
     "lucide-react": "^0.294.0",
+    "pdfjs-dist": "^6.3.289",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",

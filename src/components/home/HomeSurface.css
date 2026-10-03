@@ -1,0 +1,1155 @@
+/* EzyJobs 2027 — full homepage surface system
+   Layered around the existing functional components so the information architecture stays intact. */
+
+.ezy-home-shell {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(1100px 620px at 12% 10%, rgba(105,182,255,.08), transparent 63%),
+    radial-gradient(900px 540px at 92% 27%, rgba(68,198,169,.07), transparent 60%),
+    linear-gradient(180deg, #fafdff 0%, #f6fbff 34%, #f9fbff 68%, #f6faff 100%);
+  color: #0c1748;
+}
+
+.ezy-home-shell::before,
+.ezy-home-shell::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .42;
+}
+
+.ezy-home-shell::before {
+  width: 360px;
+  height: 360px;
+  top: 780px;
+  left: -180px;
+  background: rgba(70,147,255,.13);
+}
+
+.ezy-home-shell::after {
+  width: 460px;
+  height: 460px;
+  top: 3100px;
+  right: -230px;
+  background: rgba(41,183,145,.10);
+}
+
+.ezy-home-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ezy-home-announcement {
+  background: rgba(255,255,255,.72);
+  color: #60759e;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Every large homepage section receives a physical layer. */
+.ezy-home-section {
+  position: relative;
+}
+
+.ezy-home-section::before {
+  content: "";
+  position: absolute;
+  inset: 12% -10% auto;
+  height: 55%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(80,151,249,.08), transparent 67%);
+  opacity: .9;
+  z-index: -1;
+}
+
+.ezy-home-section--jobs {
+  padding-top: clamp(86px, 9vw, 132px) !important;
+  padding-bottom: clamp(86px, 9vw, 132px) !important;
+}
+
+.ezy-home-section--students {
+  padding-top: clamp(84px, 8vw, 124px) !important;
+  padding-bottom: clamp(84px, 8vw, 124px) !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(237,248,255,.58)),
+    radial-gradient(900px 360px at 75% 50%, rgba(111,181,255,.08), transparent 70%);
+  border-top: 1px solid rgba(41,92,150,.06);
+  border-bottom: 1px solid rgba(41,92,150,.06);
+}
+
+.ezy-home-shell .ez-eyebrow {
+  color: #2d78ef;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.ezy-home-shell .ezy-section-head {
+  position: relative;
+}
+
+/* Signal bar under hero */
+.ezy-home-shell .home-signal-strip {
+  border-top: 1px solid rgba(44,91,150,.06);
+  border-bottom: 1px solid rgba(44,91,150,.08);
+  background: rgba(255,255,255,.66);
+}
+
+/* Live metrics become glass tiles instead of flat pills. */
+.ezy-home-shell .signal-card {
+  min-width: 178px;
+  border: 1px solid rgba(205,222,243,.92);
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(244,249,255,.74));
+  box-shadow: 0 18px 38px -30px rgba(42,86,141,.38), inset 0 1px 0 rgba(255,255,255,.96);
+  transition: transform .32s cubic-bezier(.22,1,.36,1), border-color .25s ease, box-shadow .32s ease;
+}
+
+.ezy-home-shell .signal-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34,108,237,.22);
+  box-shadow: 0 26px 50px -30px rgba(42,86,141,.40), inset 0 1px 0 #fff;
+}
+
+/* Animated ticker. */
+.ezy-home-shell .glass-ticker {
+  border-color: rgba(48,95,153,.07);
+  background: rgba(249,252,255,.70);
+}
+
+.ezy-home-shell .glass-ticker span {
+  color: #6a7fa5;
+}
+
+.ezy-home-shell .glass-ticker > div {
+  will-change: transform;
+}
+
+/* Job sections: floating 3D shelf */
+.ezy-home-section--jobs .grid,
+.ezy-home-section--students .grid {
+  perspective: 1400px;
+}
+
+.ezy-home-section--jobs .grid > *,
+.ezy-home-section--students .grid > * {
+  transform-style: preserve-3d;
+}
+
+.ezy-home-shell .ez-card,
+.ezy-home-section--jobs article,
+.ezy-home-section--students article {
+  border-color: rgba(202,219,240,.90);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(244,249,255,.83)),
+    radial-gradient(circle at 100% 0%, rgba(61,141,255,.07), transparent 46%);
+  box-shadow:
+    0 28px 64px -48px rgba(28,76,132,.36),
+    inset 0 1px 0 rgba(255,255,255,.98);
+  transform: translateZ(0);
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    border-color .25s ease,
+    box-shadow .35s ease;
+}
+
+.ezy-home-shell .ez-card:hover,
+.ezy-home-section--jobs article:hover,
+.ezy-home-section--students article:hover {
+  transform: translateY(-7px) rotateX(1deg);
+  border-color: rgba(30,111,244,.20);
+  box-shadow:
+    0 40px 80px -46px rgba(28,76,132,.44),
+    inset 0 1px 0 #fff;
+}
+
+/* Value proposition cards */
+.ezy-home-shell .ezy-value-grid {
+  perspective: 1600px;
+}
+
+.ezy-home-shell .ezy-value-card {
+  position: relative;
+  min-height: 245px;
+  overflow: hidden;
+  border: 1px solid rgba(204,222,243,.94);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 88% 13%, rgba(73,159,255,.12), transparent 24%),
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(243,249,255,.84));
+  box-shadow:
+    0 34px 74px -48px rgba(26,79,139,.37),
+    inset 0 1px 0 rgba(255,255,255,.98);
+  transform-style: preserve-3d;
+  transition: transform .50s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .3s ease;
+}
+
+.ezy-home-shell .ezy-value-card::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: -72px;
+  right: -45px;
+  border-radius: 50%;
+  background: rgba(77,160,255,.10);
+  filter: blur(20px);
+}
+
+.ezy-home-shell .ezy-value-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 28%;
+  bottom: 0;
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #216cf4, #26c5a3, transparent);
+  opacity: .75;
+}
+
+.ezy-home-shell .ezy-value-card:hover {
+  transform: translateY(-10px) rotateX(3deg) rotateY(-2deg);
+  border-color: rgba(37,111,240,.22);
+  box-shadow:
+    0 46px 94px -48px rgba(26,79,139,.46),
+    inset 0 1px 0 #fff;
+}
+
+.ezy-home-shell .ezy-value-card__index {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-width: 42px;
+  justify-content: center;
+  min-height: 28px;
+  border-radius: 999px;
+  color: #1d63d8;
+  background: #eaf3ff;
+  font: 900 10px/1 var(--font-display);
+  letter-spacing: .11em;
+}
+
+.ezy-home-shell .ezy-value-card__orb {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff, #d9ecff 55%, #c7faed 100%);
+  box-shadow: 0 22px 45px -22px rgba(33,101,183,.42), inset 0 1px 0 #fff;
+  transform: translateZ(46px);
+}
+
+.ezy-home-shell .ezy-value-card__orb::after {
+  content: "";
+  position: absolute;
+  inset: 17px;
+  border-radius: 50%;
+  border: 1px solid rgba(31,109,235,.17);
+  box-shadow: inset 0 0 0 7px rgba(255,255,255,.34);
+}
+
+/* Scroll-linked decorative rails */
+.ezy-home-shell .scroll-3d-rail {
+  position: relative;
+  height: 130px;
+  margin-inline: auto;
+  max-width: 1240px;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 1px solid rgba(205,223,242,.78);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.80), rgba(242,249,255,.62)),
+    radial-gradient(circle at 18% 50%, rgba(35,117,245,.11), transparent 30%);
+  box-shadow: 0 25px 60px -48px rgba(30,78,136,.34);
+  isolation: isolate;
+}
+
+.scroll-3d-rail::before,
+.scroll-3d-rail::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 1px solid rgba(33,107,233,.12);
+  transform-style: preserve-3d;
+}
+
+.scroll-3d-rail::before {
+  width: 350px;
+  height: 350px;
+  left: 10%;
+  top: -110px;
+  transform: rotateX(68deg) translateZ(-30px);
+}
+
+.scroll-3d-rail::after {
+  width: 260px;
+  height: 260px;
+  right: 10%;
+  top: -65px;
+  transform: rotateY(65deg) translateZ(35px);
+  border-color: rgba(41,190,157,.12);
+}
+
+@supports (animation-timeline: view()) {
+  .ezy-home-shell .scroll-3d-rail {
+    animation: ezy-rail-breathe linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 70%;
+  }
+}
+
+@keyframes ezy-rail-breathe {
+  from { transform: translateY(26px) scale(.98); opacity: .66; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* How-it-works timeline */
+.ezy-home-shell .steps-grid {
+  position: relative;
+  perspective: 1600px;
+}
+
+.ezy-home-shell .steps-grid::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 72px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(49,112,225,.20), rgba(42,184,153,.20), transparent);
+  pointer-events: none;
+}
+
+.ezy-home-shell .step-glass {
+  position: relative;
+  min-height: 280px;
+  padding: 25px 22px 28px;
+  border: 1px solid rgba(206,224,244,.92);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 80% 18%, rgba(62,142,247,.10), transparent 30%),
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(243,249,255,.84));
+  box-shadow:
+    0 30px 65px -44px rgba(28,76,132,.37),
+    inset 0 1px 0 rgba(255,255,255,.96);
+  transform-style: preserve-3d;
+  transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .3s ease;
+}
+
+.ezy-home-shell .step-glass:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  border-color: rgba(40,110,239,.22);
+  box-shadow:
+    0 42px 86px -45px rgba(28,76,132,.44),
+    inset 0 1px 0 #fff;
+}
+
+.ezy-home-shell .step-glass__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ezy-home-shell .step-number {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: #0d5ddd;
+  background: linear-gradient(145deg, #f3f8ff, #dcecff);
+  box-shadow: inset 2px 2px 8px rgba(255,255,255,.9), 0 16px 30px -22px rgba(30,101,211,.38);
+  transform: translateZ(34px);
+}
+
+.ezy-home-shell .step-number span {
+  font: 900 14px/1 var(--font-display);
+}
+
+.ezy-home-shell .step-status {
+  color: #7890b4;
+  font: 900 8px/1 var(--font-display);
+  letter-spacing: .18em;
+}
+
+.ezy-home-shell .step-progress {
+  height: 3px;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf3fb;
+}
+
+.ezy-home-shell .step-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1f70f7, #35c6a5);
+}
+
+.ezy-home-shell .step-glass__ghost {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  color: rgba(42,105,191,.08);
+  font: 900 86px/.8 var(--font-display);
+  pointer-events: none;
+}
+
+/* Transparency bento */
+.ezy-home-shell .ezy-transparency-card {
+  position: relative;
+  min-height: 172px;
+  border: 1px solid rgba(204,222,243,.92);
+  border-radius: 24px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 26px 58px -45px rgba(28,76,132,.34), inset 0 1px 0 #fff;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: transform .42s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background .3s ease;
+}
+
+.ezy-home-shell .ezy-transparency-card:hover {
+  transform: translateY(-6px) rotateX(2deg);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 38px 74px -44px rgba(28,76,132,.42), inset 0 1px 0 #fff;
+}
+
+/* Final CTA */
+.ezy-home-shell .ezy-final-cta {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(195,219,243,.92);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(87,166,255,.22), transparent 42%),
+    radial-gradient(circle at 15% 85%, rgba(44,197,161,.15), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.94), rgba(239,248,255,.80));
+  box-shadow:
+    0 45px 100px -62px rgba(31,78,138,.48),
+    inset 0 1px 0 rgba(255,255,255,.98);
+}
+
+.ezy-home-shell .ezy-final-cta::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  border: 1px solid rgba(33,106,231,.11);
+  transform: translateY(22%);
+}
+
+.ezy-home-shell .ezy-final-cta::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(38,192,159,.10);
+  transform: translateY(35%);
+}
+
+.ezy-home-shell .ezy-final-cta__orb {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 36px;
+  right: 12%;
+  border-radius: 30px;
+  background: linear-gradient(145deg,#fff,#e2efff);
+  box-shadow: 18px 24px 55px -30px rgba(31,92,166,.38), inset 2px 2px 10px rgba(255,255,255,.92);
+  transform: rotate(16deg);
+}
+
+.ezy-home-shell .ezy-final-cta__orb::after {
+  content: "";
+  position: absolute;
+  inset: 27px;
+  border-radius: 19px;
+  background: linear-gradient(145deg,#2e83ff,#19bba0);
+}
+
+.ezy-home-shell .ezy-final-cta__content {
+  position: relative;
+  z-index: 3;
+  max-width: 720px;
+  padding: 46px 26px;
+  text-align: center;
+}
+
+/* Footer gets the same material language without changing its navigation. */
+.site-footer {
+  position: relative;
+  border-top: 1px solid rgba(151,191,233,.16) !important;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(64,139,255,.18), transparent 24%),
+    radial-gradient(circle at 14% 78%, rgba(42,177,146,.11), transparent 22%),
+    linear-gradient(145deg, #081427 0%, #0a1a32 52%, #07111f 100%) !important;
+}
+
+.site-footer .footer-brand-card,
+.site-footer nav {
+  position: relative;
+  z-index: 2;
+}
+
+.site-footer .footer-brand-card {
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 24px;
+  background: rgba(255,255,255,.025);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 28px 70px -54px rgba(0,0,0,.75);
+}
+
+.site-footer h3 {
+  color: rgba(255,255,255,.42) !important;
+}
+
+.site-footer a:hover {
+  color: #fff !important;
+}
+
+@media (max-width: 1023px) {
+  .ezy-home-shell .steps-grid::before {
+    display: none;
+  }
+
+  .ezy-home-shell .ezy-final-cta {
+    min-height: 360px;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ezy-home-shell::before,
+  .ezy-home-shell::after {
+    opacity: .24;
+  }
+
+  .ezy-home-section--jobs,
+  .ezy-home-section--students {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+
+  .ezy-home-shell .ez-card:hover,
+  .ezy-home-section--jobs article:hover,
+  .ezy-home-section--students article:hover,
+  .ezy-home-shell .ezy-value-card:hover,
+  .ezy-home-shell .step-glass:hover,
+  .ezy-home-shell .ezy-transparency-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .site-footer .footer-brand-card {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ezy-home-shell *,
+  .ezy-home-shell::before,
+  .ezy-home-shell::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scroll-linked motion system: one global progress value drives the whole homepage. */
+html {
+  scroll-behavior: smooth;
+}
+
+.ezy-home-shell {
+  --ezy-scroll: var(--ezy-page-progress, 0);
+}
+
+.ezy-home-shell .ezy-home-section,
+.ezy-home-shell .home-signal-strip,
+.ezy-home-shell .scroll-3d-rail {
+  transform: translate3d(0, calc((var(--ezy-scroll) - .25) * -10px), 0);
+  transition: transform .15s linear;
+}
+
+.ezy-home-shell .ezy-home-section:nth-of-type(odd) {
+  transform: translate3d(0, calc((var(--ezy-scroll) - .25) * 8px), 0);
+}
+
+.ezy-home-shell .ezy-value-card,
+.ezy-home-shell .step-glass,
+.ezy-home-shell .ezy-transparency-card {
+  will-change: transform;
+}
+
+@supports (animation-timeline: scroll()) {
+  .ezy-home-shell .ezy-value-card:nth-child(1) { animation: ezy-card-depth linear both; animation-timeline: scroll(root); animation-range: 10% 55%; }
+  .ezy-home-shell .ezy-value-card:nth-child(2) { animation: ezy-card-depth-2 linear both; animation-timeline: scroll(root); animation-range: 15% 60%; }
+  .ezy-home-shell .ezy-value-card:nth-child(3) { animation: ezy-card-depth-3 linear both; animation-timeline: scroll(root); animation-range: 20% 65%; }
+  .ezy-home-shell .ezy-value-card:nth-child(4) { animation: ezy-card-depth-4 linear both; animation-timeline: scroll(root); animation-range: 25% 70%; }
+}
+
+@keyframes ezy-card-depth {
+  from { transform: translateY(26px) rotateX(6deg) rotateY(-3deg); opacity: .78; }
+  to { transform: translateY(0) rotateX(0) rotateY(0); opacity: 1; }
+}
+@keyframes ezy-card-depth-2 {
+  from { transform: translateY(20px) rotateX(5deg) rotateY(2deg); opacity: .78; }
+  to { transform: translateY(0) rotateX(0) rotateY(0); opacity: 1; }
+}
+@keyframes ezy-card-depth-3 {
+  from { transform: translateY(32px) rotateX(7deg) rotateY(-2deg); opacity: .76; }
+  to { transform: translateY(0) rotateX(0) rotateY(0); opacity: 1; }
+}
+@keyframes ezy-card-depth-4 {
+  from { transform: translateY(18px) rotateX(4deg) rotateY(3deg); opacity: .78; }
+  to { transform: translateY(0) rotateX(0) rotateY(0); opacity: 1; }
+}
+
+/* Light, airy footer to keep the homepage material consistent with the reference. */
+.site-footer {
+  color: #61769b !important;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(79,163,255,.14), transparent 28%),
+    radial-gradient(circle at 12% 85%, rgba(53,196,159,.10), transparent 24%),
+    linear-gradient(180deg, #f1f8ff 0%, #eaf4ff 100%) !important;
+  border-top: 1px solid rgba(152,191,232,.24) !important;
+}
+
+.site-footer .footer-brand-card {
+  border-color: rgba(193,216,240,.82) !important;
+  background: rgba(255,255,255,.64) !important;
+  box-shadow: 0 28px 70px -54px rgba(49,93,144,.28), inset 0 1px 0 rgba(255,255,255,.94) !important;
+}
+
+.site-footer .text-white,
+.site-footer .text-white\/75,
+.site-footer .text-white\/40,
+.site-footer .text-white\/30 {
+  color: #60759b !important;
+}
+
+.site-footer h3 {
+  color: #7890b5 !important;
+}
+
+.site-footer a,
+.site-footer p,
+.site-footer span {
+  color: inherit;
+}
+
+.site-footer a:hover {
+  color: #1267ee !important;
+}
+
+.site-footer .ez-chip-ink {
+  color: #5f789f !important;
+  border-color: rgba(187,211,237,.88) !important;
+  background: rgba(255,255,255,.58) !important;
+}
+
+.site-footer .ez-chip-ink:hover {
+  color: #1267ee !important;
+  border-color: rgba(47,113,229,.25) !important;
+  background: rgba(255,255,255,.82) !important;
+}
+
+.site-footer .text-gradient {
+  opacity: .20;
+}
+
+@media (max-width: 767px) {
+  .ezy-home-shell .ezy-home-section,
+  .ezy-home-shell .home-signal-strip,
+  .ezy-home-shell .scroll-3d-rail {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ezy-home-shell .ezy-home-section,
+  .ezy-home-shell .home-signal-strip,
+  .ezy-home-shell .scroll-3d-rail {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.ezy-scroll-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  z-index: 9999;
+  pointer-events: none;
+  background: rgba(209,226,245,.28);
+}
+
+.ezy-scroll-progress span {
+  display: block;
+  width: calc(var(--ezy-page-progress, 0) * 100%);
+  height: 100%;
+  background: linear-gradient(90deg, #1870f8 0%, #5caaff 48%, #28c7a3 100%);
+  box-shadow: 0 0 12px rgba(37,112,244,.34);
+  transform-origin: left center;
+}
+
+.ezy-home-shell::selection {
+  background: rgba(41,124,244,.18);
+}
+
+@media (max-width: 767px) {
+  .ezy-scroll-progress { height: 1px; }
+}
+
+/* ==========================================================================
+   Unified 2027 visual choreography
+   Guided scrolling + section hierarchy + job-card material system.
+   ========================================================================== */
+
+.ezy-chapter-rail {
+  position: fixed;
+  z-index: 90;
+  top: 50%;
+  right: 20px;
+  display: grid;
+  gap: 10px;
+  transform: translateY(-50%);
+  padding: 10px 7px;
+  border: 1px solid rgba(191,214,238,.70);
+  border-radius: 999px;
+  background: rgba(255,255,255,.58);
+  box-shadow: 0 24px 55px -38px rgba(30,78,136,.34), inset 0 1px 0 rgba(255,255,255,.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ezy-chapter-rail__line {
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(47,100,214,.18), rgba(42,168,132,.18), transparent);
+}
+
+.ezy-chapter-dot {
+  position: relative;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.ezy-chapter-dot i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a8b7cb;
+  box-shadow: 0 0 0 4px rgba(168,183,203,.06);
+  transition: transform .32s cubic-bezier(.22,1,.36,1), background .25s ease, box-shadow .3s ease;
+}
+
+.ezy-chapter-dot:hover i,
+.ezy-chapter-dot.is-active i {
+  width: 7px;
+  height: 7px;
+  background: #176cf2;
+  box-shadow: 0 0 0 5px rgba(23,108,242,.10), 0 0 20px rgba(23,108,242,.22);
+  transform: scale(1.05);
+}
+
+.ezy-chapter-dot__label {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(14,37,75,.90);
+  color: #fff;
+  font: 800 8px/1 var(--font-display);
+  letter-spacing: .04em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-50%) translateX(5px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .24s ease;
+}
+
+.ezy-chapter-dot:hover .ezy-chapter-dot__label,
+.ezy-chapter-dot.is-active .ezy-chapter-dot__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Make the plain sections behave like one continuous material system. */
+.ezy-home-shell > section,
+.ezy-home-shell .ezy-home-section,
+.ezy-home-shell .spatial-discovery,
+.ezy-home-shell .cinematic-orbit {
+  scroll-margin-top: 84px;
+}
+
+.ezy-home-shell .ezy-home-section--jobs {
+  background:
+    radial-gradient(900px 420px at 10% 24%, rgba(89,169,255,.08), transparent 64%),
+    linear-gradient(180deg, rgba(255,255,255,.30), rgba(242,248,254,.72));
+}
+
+.ezy-home-shell .ezy-home-section--students {
+  background:
+    radial-gradient(800px 360px at 90% 20%, rgba(48,193,159,.08), transparent 68%),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(242,249,255,.80));
+}
+
+/* Better job cards */
+.ezy-home-shell .job-card-shell {
+  border-radius: 24px;
+  padding: 22px !important;
+  background:
+    radial-gradient(circle at 94% 8%, rgba(79,156,255,.08), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.98), rgba(245,249,254,.92));
+  border-color: rgba(198,219,240,.92);
+  box-shadow:
+    0 32px 70px -50px rgba(29,78,135,.40),
+    inset 0 1px 0 rgba(255,255,255,.98);
+  overflow: hidden;
+}
+
+.ezy-home-shell .job-card-shell::before {
+  opacity: .28;
+  background: linear-gradient(135deg, rgba(40,111,239,.46), rgba(255,255,255,.64), rgba(42,168,132,.33));
+}
+
+.ezy-home-shell .job-card-shell::after {
+  opacity: 0;
+  background:
+    radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(46,123,248,.10), transparent 65%);
+}
+
+.ezy-home-shell .job-card-shell:hover::after {
+  opacity: 1;
+}
+
+.ezy-home-shell .job-card-shell h3 a {
+  color: #163570;
+  letter-spacing: -.025em;
+}
+
+.ezy-home-shell .job-card-shell h3 a:hover {
+  color: #1469ef;
+}
+
+.ezy-home-shell .job-card-shell .border-line {
+  border-color: rgba(190,212,236,.68);
+}
+
+.ezy-home-shell .job-card-shell .ez-chip,
+.ezy-home-shell .job-card-shell [class*="rounded-full"].border {
+  backdrop-filter: blur(10px);
+}
+
+.ezy-home-shell .job-card-shell .ez-btn {
+  min-height: 38px;
+}
+
+.ezy-home-shell .job-card-shell > div > div:last-child a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #1b72fa, #115edc);
+  color: #fff;
+  box-shadow: 0 14px 30px -19px rgba(18,96,222,.72);
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.ezy-home-shell .job-card-shell > div > div:last-child a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -18px rgba(18,96,222,.78);
+}
+
+/* Section heading rhythm */
+.ezy-home-shell .ez-eyebrow {
+  color: #1f6df1;
+  letter-spacing: .14em;
+}
+
+.ezy-home-shell .text-gradient {
+  background: linear-gradient(105deg, #17449f 0%, #2f64d6 44%, #2aa884 100%);
+}
+
+.ezy-home-shell .steps-grid,
+.ezy-home-shell .ezy-value-grid {
+  margin-top: 46px;
+}
+
+.ezy-home-shell .steps-grid > .reveal,
+.ezy-home-shell .ezy-value-grid > .reveal {
+  perspective: 1300px;
+}
+
+/* Replace the visual placeholder rail with a polished system track. */
+.ezy-home-shell .scroll-3d-rail {
+  position: relative;
+  max-width: 1240px;
+  height: 126px;
+  margin-block: 18px 22px !important;
+  border: 1px solid rgba(196,218,240,.82);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 17% 45%, rgba(49,116,240,.10), transparent 27%),
+    linear-gradient(90deg, rgba(255,255,255,.80), rgba(239,247,255,.66));
+  box-shadow: 0 28px 64px -46px rgba(28,79,138,.32), inset 0 1px 0 rgba(255,255,255,.94);
+  overflow: hidden;
+}
+
+.ezy-home-shell .scroll-3d-rail::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, #2f64d6, #6ca7ff, #2aa884, #2f64d6);
+  opacity: .24;
+}
+
+.ezy-home-shell .scroll-3d-rail::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  left: calc(6% + var(--ezy-page-progress, 0) * 88%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(71,153,255,.18), transparent 66%);
+  filter: blur(8px);
+  transition: left .18s linear;
+}
+
+.ezy-home-shell .scroll-3d-rail > div {
+  position: absolute;
+  inset: 0;
+  padding-inline: 7% !important;
+  color: #7187aa !important;
+}
+
+.ezy-home-shell .scroll-3d-rail span {
+  position: relative;
+  font-size: 9px !important;
+  letter-spacing: .14em !important;
+}
+
+.ezy-home-shell .scroll-3d-rail span::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-inline-end: 7px;
+  border-radius: 50%;
+  background: #2f64d6;
+  box-shadow: 0 0 0 5px rgba(47,100,214,.07);
+  vertical-align: middle;
+}
+
+/* Keep the cinematic sections visually connected with the main cloud material. */
+.ezy-home-shell .spatial-discovery,
+.ezy-home-shell .cinematic-orbit {
+  border-color: rgba(184,211,238,.54);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
+}
+
+/* CTA should feel like the end of the same environment. */
+.ezy-home-shell .ezy-final-cta {
+  border-color: rgba(190,216,240,.94);
+  background:
+    radial-gradient(circle at 50% -8%, rgba(78,167,255,.22), transparent 40%),
+    radial-gradient(circle at 16% 85%, rgba(45,198,162,.12), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,.97), rgba(239,247,255,.88));
+}
+
+.ezy-home-shell .ezy-final-cta .ez-btn-ghost {
+  background: rgba(255,255,255,.84);
+}
+
+/* Reduce visual noise from legacy global dark glass classes if they occur
+   inside the public homepage. */
+.ezy-home-shell .ez-panel {
+  color: #17305e;
+}
+
+@media (max-width: 1100px) {
+  .ezy-chapter-rail { right: 12px; }
+}
+
+@media (max-width: 900px) {
+  .ezy-chapter-rail { display: none; }
+
+  .ezy-home-shell .job-card-shell {
+    padding: 18px !important;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ezy-home-shell .scroll-3d-rail {
+    height: 92px;
+    border-radius: 20px;
+  }
+
+  .ezy-home-shell .scroll-3d-rail span {
+    font-size: 7px !important;
+  }
+
+  .ezy-home-shell .scroll-3d-rail span:not(:first-child) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ezy-chapter-dot__label,
+  .ezy-home-shell .scroll-3d-rail::after {
+    transition: none !important;
+  }
+}
+
+/* Home header: quiet glass chrome that remains legible over the cinematic hero. */
+.home-header {
+  color: #17396f;
+  background: rgba(255,255,255,.34);
+  border-bottom-color: rgba(255,255,255,.54) !important;
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+.home-header > div {
+  max-width: 1380px;
+}
+
+.home-header .home-brand-name {
+  color: #0d1b4b;
+  font-size: 24px;
+  letter-spacing: -.055em;
+}
+
+.home-header .home-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 0;
+  color: #173b73;
+  font: 700 13px/1 var(--font-display);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.home-header .home-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: #146cf2;
+  transform: scaleX(0);
+  transition: transform .25s cubic-bezier(.22,1,.36,1);
+}
+
+.home-header .home-nav-link:hover,
+.home-header .home-nav-link.is-active {
+  color: #0f5fd3;
+  transform: translateY(-1px);
+}
+
+.home-header .home-nav-link:hover::after,
+.home-header .home-nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.home-header .home-header-search {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(196,217,240,.54);
+  border-radius: 50%;
+  background: rgba(255,255,255,.42);
+  color: #17427d;
+  cursor: pointer;
+  box-shadow: 0 9px 24px -20px rgba(25,78,137,.35);
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+.home-header .home-header-search:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.78);
+  color: #0f65e4;
+}
+
+.home-header .home-login-link {
+  color: #15366c;
+  font: 700 13px/1 var(--font-display);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.home-header .home-login-link:hover {
+  color: #0d64e7;
+}
+
+.home-header .home-get-started {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(180deg,#1d74ff,#1262e9);
+  box-shadow: 0 14px 30px -19px rgba(18,98,233,.72);
+  font: 800 13px/1 var(--font-display);
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.home-header .home-get-started:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 35px -18px rgba(18,98,233,.78);
+}
+
+@media (max-width: 900px) {
+  .home-header {
+    background: rgba(255,255,255,.76);
+    border-bottom-color: rgba(198,219,240,.52) !important;
+  }
+}

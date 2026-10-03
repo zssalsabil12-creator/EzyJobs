@@ -1,0 +1,293 @@
+/* ============================================================
+   BentoCategories 2027 — Find your direction (3D Crystals)
+   Matches EzyJobs reference image:
+   - Header with slider arrows
+   - 5 Glass cards with 3D colorful crystals:
+     1. Technology (Blue Diamond Crystal)
+     2. Business (Green Faceted Gemstone)
+     3. Creative (Purple Flower Crystal)
+     4. Support (Blue Glossy Torus)
+     5. Students (Mint Glass Cube)
+   ============================================================ */
+
+.bento-direction-section {
+  position: relative;
+  margin-top: 10px;
+}
+
+/* ── HEADER ──────────────────────────────────────────────────── */
+.bento-direction-eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  color: #0055ff;
+  text-transform: uppercase;
+}
+.bento-direction-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 950;
+  color: #0f172a;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.bento-direction-lead {
+  font-size: 13.5px;
+  color: #64748b;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* Slider Arrow Buttons */
+.bento-direction-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bento-arrow-btn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px -6px rgba(15, 23, 42, 0.15);
+  transition: all .25s ease;
+}
+.bento-arrow-btn:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  color: #0055ff;
+  border-color: rgba(0, 85, 255, 0.3);
+  box-shadow: 0 8px 20px -8px rgba(0, 85, 255, 0.4);
+}
+
+/* ── CARDS RAIL ──────────────────────────────────────────────── */
+.category-showcase {
+  position: relative;
+  overflow: visible;
+  margin-top: 14px;
+}
+.category-showcase__rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-showcase__rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── CARD BASE ───────────────────────────────────────────────── */
+.category-card {
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px 20px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(244, 248, 255, 0.86));
+  box-shadow:
+    0 24px 50px -28px rgba(23, 64, 118, 0.20),
+    inset 0 1px 0 #ffffff;
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    box-shadow .45s ease,
+    border-color .35s ease;
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.category-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(0, 85, 255, 0.25);
+  box-shadow:
+    0 36px 70px -30px rgba(0, 85, 255, 0.32),
+    inset 0 1px 0 #ffffff;
+}
+
+/* Card Typography */
+.category-card__copy {
+  position: relative;
+  z-index: 3;
+}
+.category-card-kicker {
+  display: block;
+  color: #0f172a;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.category-card-title {
+  margin-top: 4px;
+  color: #334155;
+  font-size: 13.5px;
+  line-height: 1.25;
+  font-weight: 750;
+}
+.category-card-sub {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Arrow Button on Card */
+.category-card__arrow {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  color: #0055ff;
+  font-size: 13px;
+  font-weight: 900;
+  transition: transform .25s ease;
+}
+.category-card:hover .category-card__arrow {
+  transform: translateX(-4px);
+}
+
+/* ── 3D ART CRYSTALS ─────────────────────────────────────────── */
+.category-art {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  z-index: 1;
+  opacity: .96;
+  filter: saturate(115%);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.category-card:hover .category-art {
+  transform: translateX(-50%) translateY(-6px) scale(1.08);
+}
+.category-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255,255,255,.96), transparent 34%);
+}
+
+/* Art Themes */
+.category-art--blue   { background: radial-gradient(circle at 50% 45%, rgba(0, 85, 255, 0.28), transparent 65%), linear-gradient(145deg, #e0edff, #cfe4ff); }
+.category-art--mint   { background: radial-gradient(circle at 50% 45%, rgba(16, 185, 129, 0.25), transparent 65%), linear-gradient(145deg, #dcfce7, #bbf7d0); }
+.category-art--violet { background: radial-gradient(circle at 50% 45%, rgba(168, 85, 247, 0.25), transparent 65%), linear-gradient(145deg, #f3e8ff, #e9d5ff); }
+.category-art--sky    { background: radial-gradient(circle at 50% 45%, rgba(14, 165, 233, 0.25), transparent 65%), linear-gradient(145deg, #e0f2fe, #bae6fd); }
+.category-art--green  { background: radial-gradient(circle at 50% 45%, rgba(5, 150, 105, 0.25), transparent 65%), linear-gradient(145deg, #ecfdf5, #a7f3d0); }
+
+/* 3D Shapes */
+
+/* 1. Technology: Blue Geometric Crystal */
+.category-shape--diamond {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 66px; height: 66px;
+  transform: translate(-50%,-50%) rotate(25deg);
+  border-radius: 20px;
+  background: linear-gradient(145deg, #0055ff, #38bdf8);
+  box-shadow:
+    18px 22px 38px -14px rgba(0, 85, 255, 0.55),
+    inset 6px 6px 16px rgba(255, 255, 255, 0.45),
+    inset -8px -10px 18px rgba(0, 40, 150, 0.35);
+}
+
+/* 2. Business: Green Faceted Gemstone */
+.category-shape--gem {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 68px; height: 68px;
+  transform: translate(-50%,-50%) rotate(32deg) scale(0.92);
+  border-radius: 22px 8px 22px 8px;
+  background: linear-gradient(145deg, #10b981, #34d399);
+  box-shadow:
+    16px 20px 34px -14px rgba(16, 185, 129, 0.50),
+    inset 5px 5px 14px rgba(255, 255, 255, 0.45),
+    inset -8px -10px 18px rgba(6, 95, 70, 0.30);
+}
+
+/* 3. Creative: Purple Crystal Flower */
+.category-shape--flower {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 70px; height: 70px;
+  transform: translate(-50%,-50%) rotate(22deg) scale(0.95);
+  border-radius: 50% 18% 50% 18%;
+  background:
+    radial-gradient(circle at 50% 50%, #f3e8ff 0 16%, transparent 18%),
+    conic-gradient(from 20deg, #a855f7, #c084fc, #9333ea, #d8b4fe, #a855f7);
+  box-shadow:
+    16px 20px 34px -14px rgba(168, 85, 247, 0.48),
+    inset 5px 5px 14px rgba(255, 255, 255, 0.45),
+    inset -8px -10px 18px rgba(107, 33, 168, 0.30);
+}
+
+/* 4. Support: Cobalt Blue Torus Ring */
+.category-shape--ring {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  transform: translate(-50%,-50%) rotate(-18deg);
+  background:
+    radial-gradient(circle, #ffffff 0 30%, transparent 32%),
+    linear-gradient(145deg, #0284c7, #38bdf8);
+  box-shadow:
+    18px 22px 36px -14px rgba(2, 132, 199, 0.50),
+    inset 5px 5px 14px rgba(255, 255, 255, 0.45),
+    inset -8px -10px 18px rgba(12, 74, 110, 0.30);
+}
+
+/* 5. Students: Mint/Cyan 3D Glass Cube */
+.category-shape--cube {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 64px; height: 64px;
+  transform: translate(-50%,-50%) rotate(45deg);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #059669, #10b981);
+  box-shadow:
+    16px 20px 34px -14px rgba(5, 150, 105, 0.48),
+    inset 6px 6px 16px rgba(255, 255, 255, 0.50),
+    inset -8px -10px 18px rgba(4, 120, 87, 0.30);
+}
+
+/* ── RESPONSIVE DESIGN ────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .category-showcase__rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .category-showcase__rail {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+  }
+  .category-showcase__rail > div {
+    min-width: 250px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .bento-direction-title {
+    font-size: 1.8rem;
+  }
+}

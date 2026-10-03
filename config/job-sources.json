@@ -1,0 +1,136 @@
+{
+  "greenhouse": [
+    {
+      "token": "gitlab",
+      "name": "GitLab",
+      "note": "Verified public Greenhouse board; direct employer listing."
+    },
+    {
+      "token": "remotecom",
+      "name": "Remote",
+      "note": "Current public Greenhouse board; employer states most roles are globally remote."
+    },
+    {
+      "token": "cloudflare",
+      "name": "Cloudflare",
+      "note": "Verified public Greenhouse board; direct employer listing."
+    },
+    {
+      "token": "grafanalabs",
+      "name": "Grafana Labs",
+      "note": "Verified public Greenhouse board; direct employer listing."
+    }
+  ],
+  "ashby": [
+    {
+      "board": "openai",
+      "name": "OpenAI",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "perplexity",
+      "name": "Perplexity",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "omni",
+      "name": "Omni",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "coder",
+      "name": "Coder",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "ashby",
+      "name": "Ashby",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "linear",
+      "name": "Linear",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "zapier",
+      "name": "Zapier",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "modal",
+      "name": "Modal",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "sentry",
+      "name": "Sentry",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "cursor",
+      "name": "Cursor",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "notion",
+      "name": "Notion",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "ramp",
+      "name": "Ramp",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "weaviate",
+      "name": "Weaviate",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "pinecone",
+      "name": "Pinecone",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "motherduck",
+      "name": "MotherDuck",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "posthog",
+      "name": "PostHog",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "confluent",
+      "name": "Confluent",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "demandbase",
+      "name": "Demandbase",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "langchain",
+      "name": "LangChain",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "replit",
+      "name": "Replit",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "cohere",
+      "name": "Cohere",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    },
+    {
+      "board": "clickhouse",
+      "name": "ClickHouse",
+      "note": "Verified public Ashby Job Postings board; direct employer listing."
+    }
+  ]
+}
