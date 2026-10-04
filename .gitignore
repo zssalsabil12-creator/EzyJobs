@@ -1,35 +1,9 @@
+# Dependencies
 node_modules/
-.next/
+
+# Build outputs
 dist/
 build/
-.smoke/
-.prerender-ssr/
+
+# Logs
 *.log
-
-# Secrets
-.env
-.env.local
-.env.*.local
-!.env.example
-
-# Local QA / temporary reports
-.check-*.txt
-.smoke-*.txt
-.typecheck-*.txt
-.typecheck-current.*
-verify-*.txt
-build-final.txt
-full-build.log
-chrome-*.txt
-dev-*.txt
-qa-*.txt
-final-preview.txt
-desktop-home.png
-hero-current.png
-qa-home.png
-typecheck-current.exit
-typecheck-final.txt
-*.bak
-
-# Local tooling state
-.freebuff/

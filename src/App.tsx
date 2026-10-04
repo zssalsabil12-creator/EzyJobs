@@ -37,6 +37,9 @@ import SearchOpportunityPage from './pages/SearchOpportunityPage';
 import { PrivacyPage, TermsPage, UsagePolicyPage } from './pages/LegalPages';
 import NotFoundPage from './pages/NotFoundPage';
 import CommandPalette from './components/art/CommandPalette';
+import SmoothScroll from './components/art/SmoothScroll';
+import PremiumCursor from './components/art/PremiumCursor';
+import VitalityEngine from './components/art/VitalityEngine';
 import { FullPageLoader } from './components/ui/Feedback';
 import { trackUsage } from './lib/usage';
 import { initSavedJobsSync } from './lib/savedJobs';
@@ -72,6 +75,8 @@ export function AppRoutes({ initialJobs }: { initialJobs?: Job[] } = {}) {
   return (
     <>
       <CommandPalette jobs={jobs} />
+      <PremiumCursor />
+      <VitalityEngine />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage jobs={jobs} />} />
@@ -396,7 +401,9 @@ export default function App() {
     <AuthProvider>
       <ProfileProvider>
         <BrowserRouter>
-          <AppRoutes />
+          <SmoothScroll>
+            <AppRoutes />
+          </SmoothScroll>
         </BrowserRouter>
       </ProfileProvider>
     </AuthProvider>

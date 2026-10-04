@@ -7,6 +7,8 @@ import JobCard from '../jobs/JobCard';
 import { Badge, Section, SectionHead } from '../ui/Primitives';
 import Reveal from '../art/Reveal';
 import Magnetic from '../art/Magnetic';
+import Parallax from '../art/Parallax';
+import CountUp from '../art/CountUp';
 import OrbitMark from '../art/OrbitMark';
 import { usePublicSiteSettings } from '../../lib/siteSettings';
 import AdSenseSlot from '../monetization/AdSenseSlot';
@@ -216,7 +218,9 @@ function DiscoverySignal({ jobs }: { jobs: Job[] }) {
             <div key={signal.label} className="signal-card rounded-xl border border-line bg-white/70 px-4 py-2.5">
               <div className="flex items-baseline justify-between gap-6">
                 <span className="text-[11px] font-semibold text-muted">{signal.label}</span>
-                <span className={`font-display text-lg font-black ${signal.tone === 'positive' ? 'text-mint' : signal.tone === 'accent' ? 'text-accent' : 'text-brand-700'}`}>{signal.value}</span>
+                <span className={`font-display text-lg font-black ${signal.tone === 'positive' ? 'text-mint' : signal.tone === 'accent' ? 'text-accent' : 'text-brand-700'}`}>
+                  <CountUp value={signal.value} duration={1500} />
+                </span>
               </div>
               <div className="mt-1 h-1 overflow-hidden rounded-full bg-paper-2">
                 <span
@@ -276,7 +280,9 @@ function ValueProps({ settings }: { settings: Record<string, string> }) {
   const configured = configuredRaw;
   return (
     <section id="home-value" className="relative py-20 lg:py-28 ezy-value-section">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.07] blur-[120px]" style={{ background: 'radial-gradient(circle, #2f64d6 0%, transparent 70%)' }} />
+      <Parallax speed={0.1} className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 rounded-full opacity-[0.09] blur-[120px]" style={{ background: 'radial-gradient(circle, #2f64d6 0%, transparent 70%)' }}>
+        <span />
+      </Parallax>
       <div className="relative mx-auto max-w-[1240px] px-5 lg:px-10">
         <Reveal>
           <SectionHead
