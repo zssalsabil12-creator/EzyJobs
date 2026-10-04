@@ -28,6 +28,17 @@ export default function Tilt({
     const py = (e.clientY - r.top) / r.height - 0.5;
     el.style.transition = 'transform 0.12s ease-out';
     el.style.transform = `perspective(900px) rotateY(${px * max}deg) rotateX(${-py * max}deg) translate3d(${px * pull}px, ${py * pull}px, 0)`;
+    // 2027 glare: spotlight follows the pointer across the surface
+    el.classList.add('ezy-tilt');
+    el.style.setProperty('--gx', `${((px + 0.5) * 100).toFixed(1)}%`);
+    el.style.setProperty('--gy', `${((py + 0.5) * 100).toFixed(1)}%`);
+    let glare = el.querySelector(':scope > .ezy-tilt__glare') as HTMLElement | null;
+    if (!glare) {
+      glare = document.createElement('span');
+      glare.className = 'ezy-tilt__glare';
+      glare.setAttribute('aria-hidden', 'true');
+      el.appendChild(glare);
+    }
   };
 
   const onLeave = () => {

@@ -1,0 +1,657 @@
+/* ==========================================================================
+   EZYJOBS — 2027 PREMIUM LAYER
+   Smooth-scroll choreography · 3D depth system · cinematic surfaces
+   ========================================================================== */
+
+/* ---------- Scroll progress rail (upgraded) ---------- */
+.ezy-scroll-progress {
+  height: 3px !important;
+  background: rgba(209, 226, 245, 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.ezy-scroll-progress span {
+  background: linear-gradient(90deg, #0055ff 0%, #5caaff 45%, #0d9488 100%);
+  box-shadow:
+    0 0 14px rgba(0, 85, 255, 0.55),
+    0 0 34px rgba(13, 148, 136, 0.28);
+  transition: width 90ms linear;
+}
+
+/* ---------- Premium cursor system ---------- */
+.ezy-premium-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.ezy-premium-cursor__dot,
+.ezy-premium-cursor__ring,
+.ezy-premium-cursor__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform;
+}
+
+.ezy-premium-cursor__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #0055ff;
+  box-shadow: 0 0 10px rgba(0, 85, 255, 0.85);
+}
+
+.ezy-premium-cursor__ring {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(0, 85, 255, 0.28);
+  background: radial-gradient(circle, rgba(0, 85, 255, 0.05) 0%, transparent 70%);
+  backdrop-filter: blur(1px);
+}
+
+.ezy-premium-cursor__glow {
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 85, 255, 0.07) 0%, rgba(13, 148, 136, 0.04) 40%, transparent 70%);
+  mix-blend-mode: multiply;
+}
+
+@media (pointer: coarse) {
+  .ezy-premium-cursor { display: none; }
+}
+
+/* ---------- Back-to-top with scroll ring ---------- */
+.ezy-back-to-top {
+  position: fixed;
+}
+
+.ezy-back-to-top__ring {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(0, 85, 255, 0.35));
+}
+
+.ezy-back-to-top__ring circle {
+  transition: stroke-dashoffset 120ms linear;
+}
+
+/* ---------- Lenis DOM contract ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- Cinematic hero entrance choreography ---------- */
+@keyframes ezy-rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 46px, 0) rotateX(6deg);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes ezy-fade-wide {
+  from { opacity: 0; transform: scale(0.965); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ezy-shine-sweep {
+  0%   { transform: translateX(-130%) skewX(-18deg); }
+  60%  { transform: translateX(130%) skewX(-18deg); }
+  100% { transform: translateX(130%) skewX(-18deg); }
+}
+
+@keyframes ezy-aurora-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(4%, -3%, 0) scale(1.08); }
+  66%      { transform: translate3d(-3%, 2%, 0) scale(0.96); }
+}
+
+@keyframes ezy-orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ezy-pulse-glow {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.ezy-hero__eyebrow   { animation: ezy-rise-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+.ezy-hero__title     { animation: ezy-rise-in 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+.ezy-hero__subtitle  { animation: ezy-rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both; }
+.ezy-hero__lead      { animation: ezy-rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both; }
+.ezy-search          { animation: ezy-rise-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both; }
+.ezy-hero__chips     { animation: ezy-rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both; }
+.ezy-hero__stats     { animation: ezy-rise-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.74s both; }
+.ezy-hero__stage-wrap{ animation: ezy-fade-wide 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+
+/* Hero aurora breathing */
+.ezy-hero__aurora--a { animation: ezy-aurora-drift 16s ease-in-out infinite; }
+.ezy-hero__aurora--b { animation: ezy-aurora-drift 21s ease-in-out -6s infinite reverse; }
+
+/* Search bar: focus halo + shine sweep on the CTA */
+.ezy-search.is-focused {
+  box-shadow:
+    0 24px 70px -30px rgba(0, 85, 255, 0.38),
+    0 0 0 1px rgba(0, 85, 255, 0.16),
+    0 0 60px -18px rgba(13, 148, 136, 0.28) !important;
+}
+
+.ezy-search__button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ezy-search__button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-130%) skewX(-18deg);
+  animation: ezy-shine-sweep 4.2s ease-in-out 1.6s infinite;
+  pointer-events: none;
+}
+
+.ezy-search__button:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow:
+    0 18px 40px -14px rgba(0, 85, 255, 0.55),
+    0 0 30px -6px rgba(13, 148, 136, 0.35);
+}
+
+/* ---------- 3D tilt + glare for cards ---------- */
+.ezy-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.ezy-tilt__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out, ease);
+  background: radial-gradient(
+    420px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0.06) 38%,
+    transparent 62%
+  );
+  mix-blend-mode: soft-light;
+  z-index: 2;
+}
+
+.ezy-tilt:hover .ezy-tilt__glare { opacity: 1; }
+
+.ezy-tilt__inner {
+  transform: translateZ(34px);
+  transform-style: preserve-3d;
+}
+
+/* Apply subtle lift to job cards & value cards via existing classes */
+.ezy-value-card,
+.step-glass,
+.ezy-transparency-card {
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease;
+}
+
+.ezy-value-card:hover,
+.step-glass:hover,
+.ezy-transparency-card:hover {
+  transform: translateY(-6px) perspective(900px) rotateX(2.5deg);
+  box-shadow:
+    0 34px 70px -34px rgba(20, 60, 120, 0.35),
+    0 0 0 1px rgba(0, 85, 255, 0.10);
+}
+
+/* ---------- Category cards: floating 3D shapes ---------- */
+.ezy-category-card__shape span {
+  animation: ezy-orbit-spin 14s linear infinite;
+}
+
+.ezy-category-card {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ezy-category-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow:
+    0 38px 80px -38px rgba(0, 85, 255, 0.45),
+    0 0 0 1px rgba(0, 85, 255, 0.12);
+}
+
+/* ---------- Glass ticker upgrade ---------- */
+.glass-ticker {
+  position: relative;
+}
+
+.glass-ticker::before,
+.glass-ticker::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.glass-ticker::before {
+  right: 0;
+  background: linear-gradient(to left, rgba(245, 248, 252, 0.95), transparent);
+}
+
+.glass-ticker::after {
+  left: 0;
+  background: linear-gradient(to right, rgba(245, 248, 252, 0.95), transparent);
+}
+
+/* ---------- Section reveals: staggered 3D entrances ---------- */
+.reveal,
+.public-app .reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) perspective(1000px) rotateX(4deg) scale(0.985);
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  filter: blur(3px);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible,
+.public-app .reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) perspective(1000px) rotateX(0) scale(1);
+  filter: blur(0);
+}
+
+/* ---------- Gradient text shimmer ---------- */
+.text-gradient {
+  background-size: 220% 220%;
+  animation: ezy-gradient-shift 7s ease-in-out infinite;
+}
+
+@keyframes ezy-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ---------- Live signal pulse ---------- */
+.live-scan {
+  animation: ezy-pulse-glow 1.8s ease-in-out infinite;
+}
+
+/* ---------- Header glass deepening on scroll ---------- */
+.site-shell header {
+  transition:
+    background-color 0.5s ease,
+    box-shadow 0.5s ease,
+    backdrop-filter 0.5s ease;
+}
+
+/* ---------- Scroll-linked decorative rails: deeper 3D ---------- */
+.scroll-3d-rail {
+  perspective: 700px;
+  transform-style: preserve-3d;
+}
+
+.scroll-3d-rail::before {
+  animation: ezy-orbit-spin 26s linear infinite;
+  transform-origin: center;
+}
+
+/* ---------- Buttons: press physics ---------- */
+.ez-btn {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.ez-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Floating hero cards: parallax depth already set; add hover magnetism ---------- */
+.ezy-float-card,
+.ezy-feature-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+.ezy-feature-card:hover {
+  box-shadow:
+    0 40px 90px -30px rgba(20, 60, 120, 0.45),
+    0 0 0 1px rgba(0, 85, 255, 0.14);
+}
+
+/* ---------- Selection & caret polish ---------- */
+.ezy-hero input,
+.ezy-search input {
+  caret-color: #0055ff;
+}
+
+/* ---------- Reduced motion: kill the cinema, keep the clarity ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ezy-hero__eyebrow,
+  .ezy-hero__title,
+  .ezy-hero__subtitle,
+  .ezy-hero__lead,
+  .ezy-search,
+  .ezy-hero__chips,
+  .ezy-hero__stats,
+  .ezy-hero__stage-wrap,
+  .ezy-hero__aurora--a,
+  .ezy-hero__aurora--b,
+  .text-gradient,
+  .live-scan,
+  .scroll-3d-rail::before,
+  .ezy-category-card__shape span,
+  .ezy-search__button::after {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .ezy-premium-cursor { display: none; }
+}
+
+/* ---------- Mobile: disable custom cursor + heavy effects ---------- */
+@media (max-width: 767px) {
+  .ezy-premium-cursor { display: none; }
+  .reveal { filter: none; }
+}
+
+/* ==========================================================================
+   VITALITY ENGINE — living surfaces, scroll-linked cinema, magnetic life
+   ========================================================================== */
+
+/* ---------- Global ambient aurora field (behind everything) ---------- */
+.ezy-ambient-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ezy-ambient-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  will-change: transform;
+}
+
+.ezy-ambient-orb--a {
+  width: 44vw;
+  height: 44vw;
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(0, 85, 255, 0.16), transparent 68%);
+  animation: ezy-aurora-drift 26s ease-in-out infinite;
+}
+
+.ezy-ambient-orb--b {
+  width: 38vw;
+  height: 38vw;
+  bottom: 8%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.13), transparent 68%);
+  animation: ezy-aurora-drift 34s ease-in-out -10s infinite reverse;
+}
+
+.ezy-ambient-orb--c {
+  width: 26vw;
+  height: 26vw;
+  top: 42%;
+  left: 38%;
+  background: radial-gradient(circle, rgba(95, 131, 217, 0.12), transparent 70%);
+  animation: ezy-aurora-drift 30s ease-in-out -18s infinite;
+}
+
+/* keep page content above the ambient field without trapping stacking contexts */
+.site-shell main,
+.ezy-home-shell > section,
+.ezy-home-shell > .glass-ticker {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Scroll velocity energy (JS drives --ezy-scroll-vel) ---------- */
+.ezy-hero__content {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--ezy-hero-shift, 0) * 1px), 0);
+}
+
+.ezy-hero__stage-wrap {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--ezy-hero-shift, 0) * -0.55px), 0)
+    scale(calc(1 + min(var(--ezy-hero-shift, 0), 320) / 6400));
+}
+
+.ezy-hero__background {
+  transform: translateY(calc(min(var(--ezy-hero-shift, 0), 420) * 0.3px));
+  opacity: clamp(0, calc(1 - var(--ezy-hero-shift, 0) / 520), 1);
+}
+
+.glass-ticker__track {
+  transform: skewX(calc(var(--ezy-scroll-vel, 0) * 0.12deg));
+}
+
+/* ---------- Breathing glow on hero rings & orbit rings ---------- */
+@keyframes ezy-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.035); }
+}
+
+.ezy-hero__ring--outer { animation: ezy-breathe 7s ease-in-out infinite; }
+.ezy-hero__ring--inner { animation: ezy-breathe 5.5s ease-in-out -2.5s infinite; }
+.ezy-hero__stage-glow  { animation: ezy-breathe 9s ease-in-out -1s infinite; }
+
+.cinematic-orbit__ring--outer,
+.spatial-orbit--a { animation: ezy-orbit-spin 40s linear infinite; }
+.cinematic-orbit__ring--inner,
+.spatial-orbit--b { animation: ezy-orbit-spin 28s linear infinite reverse; }
+
+/* ---------- Floating cards: weightless drift ---------- */
+@keyframes ezy-float-a {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -14px, 0); }
+}
+
+@keyframes ezy-float-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 11px, 0); }
+}
+
+.ezy-float-card--marketing { animation: ezy-float-a 6.5s ease-in-out infinite; }
+.ezy-float-card--data      { animation: ezy-float-b 8s   ease-in-out -2s infinite; }
+
+/* ---------- Spotlight sweep across headline words ---------- */
+@keyframes ezy-wordlight {
+  0%, 55%, 100% { color: inherit; text-shadow: none; }
+  70%           { color: #0055ff; text-shadow: 0 0 26px rgba(0, 85, 255, 0.35); }
+}
+
+.ezy-hero__title em,
+.ezy-hero__title .ezy-wordlight {
+  font-style: normal;
+  animation: ezy-wordlight 6.8s ease-in-out infinite;
+}
+
+/* ---------- Marquee vitality: pause on hover, speed-reactive ---------- */
+.glass-ticker:hover .glass-ticker__track {
+  animation-play-state: paused;
+}
+
+/* ---------- Magnetic buttons: light trail + ripple lift ---------- */
+.ez-btn-primary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.ez-btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.35), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ez-btn-primary:hover::before { opacity: 1; }
+
+.ez-btn-ghost {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.ez-btn-ghost:hover {
+  box-shadow: 0 14px 34px -18px rgba(0, 85, 255, 0.4);
+}
+
+/* ---------- Cards: spotlight-follow gradient border ---------- */
+.ezy-value-card,
+.step-glass,
+.ezy-transparency-card,
+.ezy-category-card {
+  position: relative;
+}
+
+.ezy-value-card::after,
+.step-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    340px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(0, 85, 255, 0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.ezy-value-card:hover::after,
+.step-glass:hover::after { opacity: 1; }
+
+/* ---------- Section dividers: animated light beam ---------- */
+@keyframes ezy-beam {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+.ezy-home-section {
+  position: relative;
+}
+
+.ezy-home-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 85, 255, 0.35), rgba(13, 148, 136, 0.3), transparent);
+  mask-image: radial-gradient(60% 100% at 50% 0%, black 30%, transparent 90%);
+  overflow: hidden;
+}
+
+/* ---------- Live counters shimmer while visible ---------- */
+@keyframes ezy-count-pulse {
+  0%, 100% { text-shadow: 0 0 0 rgba(0, 85, 255, 0); }
+  50%      { text-shadow: 0 0 22px rgba(0, 85, 255, 0.25); }
+}
+
+.ezy-hero__stats strong,
+.tnum {
+  animation: ezy-count-pulse 3.4s ease-in-out infinite;
+}
+
+/* ---------- Spatial story: core heartbeat ---------- */
+@keyframes ezy-heartbeat {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 85, 255, 0.28); }
+  45%      { box-shadow: 0 0 0 26px rgba(0, 85, 255, 0); }
+}
+
+.spatial-core,
+.cinematic-orbit__center {
+  animation: ezy-heartbeat 2.8s ease-out infinite;
+}
+
+/* ---------- Footer / header glass shimmer on scroll progress ---------- */
+.site-shell header {
+  backdrop-filter: blur(calc(10px + var(--ezy-page-progress, 0) * 14px));
+}
+
+/* ---------- Reduced motion guard for the vitality layer ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ezy-ambient-orb,
+  .ezy-hero__ring--outer,
+  .ezy-hero__ring--inner,
+  .ezy-hero__stage-glow,
+  .cinematic-orbit__ring--outer,
+  .cinematic-orbit__ring--inner,
+  .spatial-orbit--a,
+  .spatial-orbit--b,
+  .ezy-float-card--marketing,
+  .ezy-float-card--data,
+  .ezy-hero__title em,
+  .ezy-hero__title .ezy-wordlight,
+  .spatial-core,
+  .cinematic-orbit__center,
+  .tnum,
+  .ezy-hero__stats strong {
+    animation: none !important;
+  }
+
+  .ezy-hero__content,
+  .ezy-hero__stage-wrap,
+  .ezy-hero__background,
+  .glass-ticker__track {
+    transform: none !important;
+  }
+}

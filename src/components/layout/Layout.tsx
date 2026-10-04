@@ -4,13 +4,23 @@ import SiteHeader from './SiteHeader';
 import SiteFooter from './SiteFooter';
 import { usePageMeta } from '../../lib/seo';
 
+declare global {
+  interface Window {
+    __ezyScrollToTop?: () => void;
+  }
+}
+
 export default function Layout() {
   const { pathname } = useLocation();
   const isAdminArea = pathname === '/admin' || pathname.startsWith('/admin/');
   usePageMeta();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    if (window.__ezyScrollToTop) {
+      window.__ezyScrollToTop();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }
   }, [pathname]);
 
   return (
@@ -35,14 +45,38 @@ function BackToTop() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const progress = 'var(--ezy-page-progress, 0)';
+
   return (
     <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={() => window.scrollTo({ top: 0 })}
       aria-label="العودة للأعلى"
-      className={`ez-btn ez-btn-ghost fixed bottom-6 right-6 z-40 h-11 w-11 !rounded-full !p-0 !gap-0 transition-all duration-500 ${
+      className={`ezy-back-to-top ez-btn ez-btn-ghost fixed bottom-6 right-6 z-40 h-12 w-12 !rounded-full !p-0 !gap-0 transition-all duration-500 ${
         show ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >
+      <svg className="ezy-back-to-top__ring" viewBox="0 0 48 48" aria-hidden>
+        <circle cx="24" cy="24" r="21" fill="none" stroke="rgba(0,85,255,.12)" strokeWidth="2" />
+        <circle
+          cx="24"
+          cy="24"
+          r="21"
+          fill="none"
+          stroke="url(#ezy-btt-grad)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          pathLength={1}
+          strokeDasharray={1}
+          style={{ strokeDashoffset: `calc(1 - ${progress})` }}
+          transform="rotate(-90 24 24)"
+        />
+        <defs>
+          <linearGradient id="ezy-btt-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#0055FF" />
+            <stop offset="100%" stopColor="#0d9488" />
+          </linearGradient>
+        </defs>
+      </svg>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M12 19V5" />
         <path d="m5 12 7-7 7 7" />

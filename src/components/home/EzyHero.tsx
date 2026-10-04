@@ -58,6 +58,56 @@ export default function EzyHero({ q, setQ, jobs, settings }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  // 2027: cinematic 3D tilt — the hero stage follows the pointer in space.
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const stage = hero.querySelector('.ezy-hero__stage') as HTMLElement | null;
+    if (!stage) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    let raf = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const onMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return;
+      const rect = hero.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      targetY = px * 9;   // rotateY deg
+      targetX = -py * 6;  // rotateX deg
+      stage.style.setProperty('--glow-x', `${(52 + px * 26).toFixed(1)}%`);
+      stage.style.setProperty('--glow-y', `${(38 + py * 22).toFixed(1)}%`);
+    };
+
+    const onLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const loop = () => {
+      currentX += (targetX - currentX) * 0.07;
+      currentY += (targetY - currentY) * 0.07;
+      stage.style.setProperty('--tilt-x', `${currentX.toFixed(2)}deg`);
+      stage.style.setProperty('--tilt-y', `${currentY.toFixed(2)}deg`);
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener('pointermove', onMove, { passive: true });
+    hero.addEventListener('pointerleave', onLeave);
+    raf = requestAnimationFrame(loop);
+
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      hero.removeEventListener('pointerleave', onLeave);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const chips = useMemo<QuickChip[]>(() => {
     const configured = settings.home_search_chips
       ?.split(/\r?\n|,/)
