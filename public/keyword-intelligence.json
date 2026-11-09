@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T11:17:42.501Z",
+  "generatedAt": "2026-11-09T12:52:59.179Z",
   "methodology": {
     "description": "EzyJobs combines Google autocomplete ranking across multiple query prefixes, Google Trends Trending Now signals where a relevant trend exists, and live EzyJobs job supply. The demand score is directional and is not an official monthly search-volume number.",
     "searchSource": "Google Autocomplete",
@@ -33,7 +33,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs near me",
@@ -51,21 +51,21 @@
         "remote data analyst jobs",
         "remote marketing jobs"
       ],
-      "searchScore": 63,
+      "searchScore": 58,
       "suggestionCount": 20,
       "sourceQueryCount": 2,
       "jobMatches": 300,
       "trendScore": 0,
-      "demandScore": 70,
+      "demandScore": 67,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote jobs arizona",
-      "normalized": "remote jobs arizona",
+      "keyword": "remote jobs seattle",
+      "normalized": "remote jobs seattle",
       "locale": "en",
       "geo": "US",
       "intent": "jobs",
@@ -82,46 +82,18 @@
       "searchScore": 81,
       "suggestionCount": 20,
       "sourceQueryCount": 2,
-      "jobMatches": 1,
+      "jobMatches": 4,
       "trendScore": 0,
       "demandScore": 65,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote customer service jobs",
-      "normalized": "remote customer service jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "support",
-      "suggestions": [
-        "remote jobs",
-        "remote jobs no experience",
-        "remote jobs entry level",
-        "remote customer service jobs",
-        "remote data entry jobs",
-        "remote software engineer jobs",
-        "remote data analyst jobs",
-        "remote marketing jobs"
-      ],
-      "searchScore": 47,
-      "suggestionCount": 14,
-      "sourceQueryCount": 4,
-      "jobMatches": 269,
-      "trendScore": 0,
-      "demandScore": 61,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote jobs phoenix",
-      "normalized": "remote jobs phoenix",
+      "keyword": "remote jobs portland",
+      "normalized": "remote jobs portland",
       "locale": "en",
       "geo": "US",
       "intent": "jobs",
@@ -144,7 +116,7 @@
       "demandSignals": [
         "google_autocomplete_ranked"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs no experience",
@@ -162,7 +134,7 @@
         "remote jobs uk",
         "remote jobs france"
       ],
-      "searchScore": 31,
+      "searchScore": 30,
       "suggestionCount": 10,
       "sourceQueryCount": 3,
       "jobMatches": 300,
@@ -172,14 +144,14 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote jobs az",
-      "normalized": "remote jobs az",
+      "keyword": "remote customer service jobs",
+      "normalized": "remote customer service jobs",
       "locale": "en",
       "geo": "US",
-      "intent": "jobs",
+      "intent": "support",
       "suggestions": [
         "remote jobs",
         "remote jobs no experience",
@@ -190,147 +162,17 @@
         "remote data analyst jobs",
         "remote marketing jobs"
       ],
-      "searchScore": 43,
-      "suggestionCount": 16,
-      "sourceQueryCount": 2,
-      "jobMatches": 48,
-      "trendScore": 0,
-      "demandScore": 51,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "work from home jobs",
-      "normalized": "work from home jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "jobs",
-      "suggestions": [
-        "work from home jobs"
-      ],
-      "searchScore": 18,
-      "suggestionCount": 4,
+      "searchScore": 28,
+      "suggestionCount": 14,
       "sourceQueryCount": 4,
-      "jobMatches": 300,
+      "jobMatches": 263,
       "trendScore": 0,
-      "demandScore": 45,
+      "demandScore": 50,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote data entry jobs",
-      "normalized": "remote data entry jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 19,
-      "suggestionCount": 4,
-      "sourceQueryCount": 3,
-      "jobMatches": 174,
-      "trendScore": 0,
-      "demandScore": 44,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote data analyst jobs",
-      "normalized": "remote data analyst jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 17,
-      "suggestionCount": 4,
-      "sourceQueryCount": 3,
-      "jobMatches": 176,
-      "trendScore": 0,
-      "demandScore": 43,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote data entry jobs arizona",
-      "normalized": "remote data entry jobs arizona",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 17,
-      "suggestionCount": 4,
-      "sourceQueryCount": 3,
-      "jobMatches": 175,
-      "trendScore": 0,
-      "demandScore": 43,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "part time remote jobs",
-      "normalized": "part time remote jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "part-time",
-      "suggestions": [
-        "part time remote jobs"
-      ],
-      "searchScore": 14,
-      "suggestionCount": 4,
-      "sourceQueryCount": 4,
-      "jobMatches": 300,
-      "trendScore": 0,
-      "demandScore": 43,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote data entry jobs phoenix",
-      "normalized": "remote data entry jobs phoenix",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 14,
-      "suggestionCount": 4,
-      "sourceQueryCount": 3,
-      "jobMatches": 174,
-      "trendScore": 0,
-      "demandScore": 42,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote part time jobs",
@@ -348,17 +190,148 @@
         "remote data analyst jobs",
         "remote marketing jobs"
       ],
-      "searchScore": 19,
+      "searchScore": 23,
       "suggestionCount": 11,
       "sourceQueryCount": 1,
       "jobMatches": 300,
       "trendScore": 0,
-      "demandScore": 41,
+      "demandScore": 44,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote data entry jobs",
+      "normalized": "remote data entry jobs",
+      "locale": "en",
+      "geo": "US",
+      "intent": "data",
+      "suggestions": [
+        "remote data entry jobs",
+        "remote data analyst jobs"
+      ],
+      "searchScore": 19,
+      "suggestionCount": 4,
+      "sourceQueryCount": 3,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 44,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote data entry jobs seattle",
+      "normalized": "remote data entry jobs seattle",
+      "locale": "en",
+      "geo": "US",
+      "intent": "data",
+      "suggestions": [
+        "remote data entry jobs",
+        "remote data analyst jobs"
+      ],
+      "searchScore": 17,
+      "suggestionCount": 4,
+      "sourceQueryCount": 3,
+      "jobMatches": 185,
+      "trendScore": 0,
+      "demandScore": 43,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "work from home jobs",
+      "normalized": "work from home jobs",
+      "locale": "en",
+      "geo": "US",
+      "intent": "jobs",
+      "suggestions": [
+        "work from home jobs"
+      ],
+      "searchScore": 15,
+      "suggestionCount": 4,
+      "sourceQueryCount": 4,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 43,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote data entry jobs portland",
+      "normalized": "remote data entry jobs portland",
+      "locale": "en",
+      "geo": "US",
+      "intent": "data",
+      "suggestions": [
+        "remote data entry jobs",
+        "remote data analyst jobs"
+      ],
+      "searchScore": 15,
+      "suggestionCount": 4,
+      "sourceQueryCount": 3,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 42,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote data analyst jobs",
+      "normalized": "remote data analyst jobs",
+      "locale": "en",
+      "geo": "US",
+      "intent": "data",
+      "suggestions": [
+        "remote data entry jobs",
+        "remote data analyst jobs"
+      ],
+      "searchScore": 14,
+      "suggestionCount": 4,
+      "sourceQueryCount": 3,
+      "jobMatches": 187,
+      "trendScore": 0,
+      "demandScore": 42,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote data entry jobs no experience",
+      "normalized": "remote data entry jobs no experience",
+      "locale": "en",
+      "geo": "US",
+      "intent": "entry",
+      "suggestions": [
+        "remote data entry jobs",
+        "remote data analyst jobs"
+      ],
+      "searchScore": 14,
+      "suggestionCount": 4,
+      "sourceQueryCount": 3,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 42,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote software engineer jobs",
@@ -372,79 +345,35 @@
       "searchScore": 14,
       "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 247,
+      "jobMatches": 235,
       "trendScore": 0,
       "demandScore": 41,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote data entry jobs no experience",
-      "normalized": "remote data entry jobs no experience",
-      "locale": "en",
-      "geo": "US",
-      "intent": "entry",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 11,
-      "suggestionCount": 4,
-      "sourceQueryCount": 3,
-      "jobMatches": 174,
-      "trendScore": 0,
-      "demandScore": 40,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote data entry jobs part time",
-      "normalized": "remote data entry jobs part time",
+      "keyword": "part time remote jobs",
+      "normalized": "part time remote jobs",
       "locale": "en",
       "geo": "US",
       "intent": "part-time",
       "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
+        "part time remote jobs"
       ],
-      "searchScore": 10,
-      "suggestionCount": 4,
+      "searchScore": 12,
+      "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 174,
+      "jobMatches": 300,
       "trendScore": 0,
       "demandScore": 40,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote software engineer jobs entry level",
-      "normalized": "remote software engineer jobs entry level",
-      "locale": "en",
-      "geo": "US",
-      "intent": "development",
-      "suggestions": [
-        "remote software engineer jobs"
-      ],
-      "searchScore": 11,
-      "suggestionCount": 3,
-      "sourceQueryCount": 3,
-      "jobMatches": 247,
-      "trendScore": 0,
-      "demandScore": 39,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote data entry jobs near me",
@@ -456,17 +385,38 @@
         "remote data entry jobs",
         "remote data analyst jobs"
       ],
-      "searchScore": 7,
+      "searchScore": 10,
       "suggestionCount": 4,
       "sourceQueryCount": 3,
-      "jobMatches": 174,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 40,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "work from home jobs near me",
+      "normalized": "work from home jobs near me",
+      "locale": "en",
+      "geo": "US",
+      "intent": "jobs",
+      "suggestions": [
+        "work from home jobs"
+      ],
+      "searchScore": 9,
+      "suggestionCount": 3,
+      "sourceQueryCount": 3,
+      "jobMatches": 300,
       "trendScore": 0,
       "demandScore": 38,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote customer service jobs near me",
@@ -477,24 +427,45 @@
       "suggestions": [
         "remote customer service jobs"
       ],
+      "searchScore": 9,
+      "suggestionCount": 3,
+      "sourceQueryCount": 3,
+      "jobMatches": 263,
+      "trendScore": 0,
+      "demandScore": 38,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote customer service jobs part time",
+      "normalized": "remote customer service jobs part time",
+      "locale": "en",
+      "geo": "US",
+      "intent": "part-time",
+      "suggestions": [
+        "remote customer service jobs"
+      ],
       "searchScore": 8,
       "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 269,
+      "jobMatches": 263,
       "trendScore": 0,
       "demandScore": 37,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "work from home jobs near me",
-      "normalized": "work from home jobs near me",
+      "keyword": "work from home jobs no experience",
+      "normalized": "work from home jobs no experience",
       "locale": "en",
       "geo": "US",
-      "intent": "jobs",
+      "intent": "entry",
       "suggestions": [
         "work from home jobs"
       ],
@@ -508,49 +479,29 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "work from home jobs mesa az",
-      "normalized": "work from home jobs mesa az",
+      "keyword": "remote data entry jobs california",
+      "normalized": "remote data entry jobs california",
       "locale": "en",
       "geo": "US",
-      "intent": "jobs",
+      "intent": "data",
       "suggestions": [
-        "work from home jobs"
+        "remote data entry jobs",
+        "remote data analyst jobs"
       ],
-      "searchScore": 14,
+      "searchScore": 6,
       "suggestionCount": 4,
-      "sourceQueryCount": 4,
-      "jobMatches": 48,
-      "trendScore": 0,
-      "demandScore": 35,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote customer service jobs part time",
-      "normalized": "remote customer service jobs part time",
-      "locale": "en",
-      "geo": "US",
-      "intent": "part-time",
-      "suggestions": [
-        "remote customer service jobs"
-      ],
-      "searchScore": 4,
-      "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 269,
+      "jobMatches": 184,
       "trendScore": 0,
-      "demandScore": 35,
+      "demandScore": 37,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote customer service jobs hiring immediately",
@@ -561,38 +512,59 @@
       "suggestions": [
         "remote customer service jobs"
       ],
-      "searchScore": 9,
+      "searchScore": 12,
       "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 77,
+      "jobMatches": 83,
       "trendScore": 0,
-      "demandScore": 34,
+      "demandScore": 36,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote customer service jobs arizona",
-      "normalized": "remote customer service jobs arizona",
+      "keyword": "work from home jobs remote",
+      "normalized": "work from home jobs remote",
       "locale": "en",
       "geo": "US",
-      "intent": "support",
+      "intent": "jobs",
       "suggestions": [
-        "remote customer service jobs"
+        "work from home jobs"
       ],
-      "searchScore": 13,
+      "searchScore": 4,
       "suggestionCount": 3,
       "sourceQueryCount": 3,
-      "jobMatches": 54,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 35,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "وظائف عن بعد في الجزائر",
+      "normalized": "وظاي ف عن بعد في الجزاي ر",
+      "locale": "ar",
+      "geo": "DZ",
+      "intent": "jobs",
+      "suggestions": [
+        "وظائف عن بعد",
+        "وظائف عن بعد في الجزائر"
+      ],
+      "searchScore": 23,
+      "suggestionCount": 5,
+      "sourceQueryCount": 3,
+      "jobMatches": 0,
       "trendScore": 0,
       "demandScore": 33,
       "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
+        "google_autocomplete_ranked"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs uk",
@@ -614,97 +586,34 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote customer service jobs mesa az",
-      "normalized": "remote customer service jobs mesa az",
+      "keyword": "remote jobs work from home",
+      "normalized": "remote jobs work from home",
       "locale": "en",
       "geo": "US",
-      "intent": "support",
-      "suggestions": [
-        "remote customer service jobs"
-      ],
-      "searchScore": 4,
-      "suggestionCount": 3,
-      "sourceQueryCount": 3,
-      "jobMatches": 86,
-      "trendScore": 0,
-      "demandScore": 33,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "وظائف عند شيوخ الإمارات",
-      "normalized": "وظاي ف عند شيوخ الا مارات",
-      "locale": "ar",
-      "geo": "DZ",
       "intent": "jobs",
       "suggestions": [
-        "وظائف عن بعد",
-        "وظائف اونلاين",
-        "وظائف من المنزل",
-        "وظائف عن بعد في الجزائر",
-        "وظائف اونلاين بدون خبرة"
+        "remote jobs",
+        "remote jobs no experience",
+        "remote jobs entry level",
+        "remote jobs for students",
+        "remote jobs worldwide",
+        "remote jobs europe",
+        "remote jobs uk"
       ],
-      "searchScore": 28,
+      "searchScore": 9,
       "suggestionCount": 7,
-      "sourceQueryCount": 2,
-      "jobMatches": 0,
-      "trendScore": 0,
-      "demandScore": 32,
-      "demandSignals": [
-        "google_autocomplete_ranked"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "وظائف اونلاين",
-      "normalized": "وظاي ف اونلاين",
-      "locale": "ar",
-      "geo": "DZ",
-      "intent": "jobs",
-      "suggestions": [
-        "وظائف عن بعد",
-        "وظائف اونلاين",
-        "وظائف من المنزل",
-        "وظائف عن بعد في الجزائر",
-        "وظائف اونلاين بدون خبرة"
-      ],
-      "searchScore": 27,
-      "suggestionCount": 7,
-      "sourceQueryCount": 2,
-      "jobMatches": 0,
-      "trendScore": 0,
-      "demandScore": 32,
-      "demandSignals": [
-        "google_autocomplete_ranked"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote customer service jobs phoenix",
-      "normalized": "remote customer service jobs phoenix",
-      "locale": "en",
-      "geo": "US",
-      "intent": "support",
-      "suggestions": [
-        "remote customer service jobs"
-      ],
-      "searchScore": 11,
-      "suggestionCount": 3,
-      "sourceQueryCount": 3,
-      "jobMatches": 53,
+      "sourceQueryCount": 1,
+      "jobMatches": 300,
       "trendScore": 0,
       "demandScore": 32,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs entry level",
@@ -725,7 +634,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "emploi à distance",
@@ -746,7 +655,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "online jobs",
@@ -767,7 +676,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs entry level no experience",
@@ -788,7 +697,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs europe",
@@ -810,7 +719,28 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "العمل عن بعد",
+      "normalized": "العمل عن بعد",
+      "locale": "ar",
+      "geo": "DZ",
+      "intent": "jobs",
+      "suggestions": [
+        "العمل عن بعد"
+      ],
+      "searchScore": 8,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 31,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote data analyst jobs entry level",
@@ -824,14 +754,56 @@
       "searchScore": 8,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 176,
+      "jobMatches": 187,
       "trendScore": 0,
       "demandScore": 31,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote customer service jobs florida",
+      "normalized": "remote customer service jobs florida",
+      "locale": "en",
+      "geo": "US",
+      "intent": "support",
+      "suggestions": [
+        "remote customer service jobs"
+      ],
+      "searchScore": 8,
+      "suggestionCount": 3,
+      "sourceQueryCount": 3,
+      "jobMatches": 60,
+      "trendScore": 0,
+      "demandScore": 31,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "work from home",
+      "normalized": "work from home",
+      "locale": "en",
+      "geo": "US",
+      "intent": "jobs",
+      "suggestions": [
+        "work from home jobs"
+      ],
+      "searchScore": 7,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 31,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "part time jobs near me",
@@ -852,7 +824,28 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "part time remote jobs near me",
+      "normalized": "part time remote jobs near me",
+      "locale": "en",
+      "geo": "US",
+      "intent": "part-time",
+      "suggestions": [
+        "part time remote jobs"
+      ],
+      "searchScore": 7,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 31,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs worldwide",
@@ -874,71 +867,70 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "العمل عن بعد",
-      "normalized": "العمل عن بعد",
-      "locale": "ar",
-      "geo": "DZ",
-      "intent": "jobs",
+      "keyword": "remote software engineer jobs entry level",
+      "normalized": "remote software engineer jobs entry level",
+      "locale": "en",
+      "geo": "US",
+      "intent": "development",
       "suggestions": [
-        "العمل عن بعد"
+        "remote software engineer jobs"
       ],
       "searchScore": 7,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 300,
+      "jobMatches": 235,
       "trendScore": 0,
       "demandScore": 31,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "remote data entry clerk jobs",
-      "normalized": "remote data entry clerk jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote data entry jobs",
-        "remote data analyst jobs"
-      ],
-      "searchScore": 6,
-      "suggestionCount": 3,
-      "sourceQueryCount": 2,
-      "jobMatches": 174,
-      "trendScore": 0,
-      "demandScore": 31,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "work from home",
-      "normalized": "work from home",
+      "keyword": "work from home jobs seattle",
+      "normalized": "work from home jobs seattle",
       "locale": "en",
       "geo": "US",
       "intent": "jobs",
       "suggestions": [
         "work from home jobs"
       ],
-      "searchScore": 6,
-      "suggestionCount": 2,
-      "sourceQueryCount": 2,
-      "jobMatches": 300,
+      "searchScore": 17,
+      "suggestionCount": 4,
+      "sourceQueryCount": 4,
+      "jobMatches": 4,
       "trendScore": 0,
       "demandScore": 30,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote software engineer jobs reddit",
+      "normalized": "remote software engineer jobs reddit",
+      "locale": "en",
+      "geo": "US",
+      "intent": "development",
+      "suggestions": [
+        "remote software engineer jobs"
+      ],
+      "searchScore": 7,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 100,
+      "trendScore": 0,
+      "demandScore": 30,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs entry level part time",
@@ -959,7 +951,28 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote jobs entry level near me",
+      "normalized": "remote jobs entry level near me",
+      "locale": "en",
+      "geo": "US",
+      "intent": "jobs",
+      "suggestions": [
+        "remote jobs entry level"
+      ],
+      "searchScore": 6,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 30,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "part time jobs",
@@ -980,28 +993,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "part time remote jobs near me",
-      "normalized": "part time remote jobs near me",
-      "locale": "en",
-      "geo": "US",
-      "intent": "part-time",
-      "suggestions": [
-        "part time remote jobs"
-      ],
-      "searchScore": 6,
-      "suggestionCount": 2,
-      "sourceQueryCount": 2,
-      "jobMatches": 300,
-      "trendScore": 0,
-      "demandScore": 30,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote data analyst jobs part time",
@@ -1015,14 +1007,14 @@
       "searchScore": 6,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 176,
+      "jobMatches": 187,
       "trendScore": 0,
       "demandScore": 30,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote data analyst jobs no experience",
@@ -1036,14 +1028,14 @@
       "searchScore": 6,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 176,
+      "jobMatches": 187,
       "trendScore": 0,
       "demandScore": 30,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote software engineer jobs usa",
@@ -1057,14 +1049,56 @@
       "searchScore": 6,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 130,
+      "jobMatches": 112,
       "trendScore": 0,
       "demandScore": 30,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote customer service jobs california",
+      "normalized": "remote customer service jobs california",
+      "locale": "en",
+      "geo": "US",
+      "intent": "support",
+      "suggestions": [
+        "remote customer service jobs"
+      ],
+      "searchScore": 6,
+      "suggestionCount": 3,
+      "sourceQueryCount": 3,
+      "jobMatches": 60,
+      "trendScore": 0,
+      "demandScore": 30,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "work from home part time jobs",
+      "normalized": "work from home part time jobs",
+      "locale": "en",
+      "geo": "US",
+      "intent": "part-time",
+      "suggestions": [
+        "work from home jobs"
+      ],
+      "searchScore": 5,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 300,
+      "trendScore": 0,
+      "demandScore": 30,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote jobs no experience work from home",
@@ -1085,28 +1119,7 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote jobs entry level near me",
-      "normalized": "remote jobs entry level near me",
-      "locale": "en",
-      "geo": "US",
-      "intent": "jobs",
-      "suggestions": [
-        "remote jobs entry level"
-      ],
-      "searchScore": 5,
-      "suggestionCount": 2,
-      "sourceQueryCount": 2,
-      "jobMatches": 300,
-      "trendScore": 0,
-      "demandScore": 30,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote data analyst jobs near me",
@@ -1120,14 +1133,35 @@
       "searchScore": 5,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 176,
+      "jobMatches": 187,
       "trendScore": 0,
       "demandScore": 30,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote jobs entry level data entry",
+      "normalized": "remote jobs entry level data entry",
+      "locale": "en",
+      "geo": "US",
+      "intent": "data",
+      "suggestions": [
+        "remote jobs entry level"
+      ],
+      "searchScore": 5,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 30,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "emploi",
@@ -1150,95 +1184,53 @@
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "work from home jobs az no experience",
-      "normalized": "work from home jobs az no experience",
+      "keyword": "remote customer service jobs work from home",
+      "normalized": "remote customer service jobs work from home",
       "locale": "en",
       "geo": "US",
-      "intent": "entry",
+      "intent": "support",
       "suggestions": [
-        "work from home jobs"
-      ],
-      "searchScore": 8,
-      "suggestionCount": 3,
-      "sourceQueryCount": 3,
-      "jobMatches": 48,
-      "trendScore": 0,
-      "demandScore": 29,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote software engineer jobs reddit",
-      "normalized": "remote software engineer jobs reddit",
-      "locale": "en",
-      "geo": "US",
-      "intent": "development",
-      "suggestions": [
-        "remote software engineer jobs"
-      ],
-      "searchScore": 6,
-      "suggestionCount": 2,
-      "sourceQueryCount": 2,
-      "jobMatches": 93,
-      "trendScore": 0,
-      "demandScore": 29,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote jobs entry level data entry",
-      "normalized": "remote jobs entry level data entry",
-      "locale": "en",
-      "geo": "US",
-      "intent": "data",
-      "suggestions": [
-        "remote jobs entry level"
-      ],
-      "searchScore": 4,
-      "suggestionCount": 2,
-      "sourceQueryCount": 2,
-      "jobMatches": 174,
-      "trendScore": 0,
-      "demandScore": 29,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "work from home part time jobs",
-      "normalized": "work from home part time jobs",
-      "locale": "en",
-      "geo": "US",
-      "intent": "part-time",
-      "suggestions": [
-        "work from home jobs"
+        "remote customer service jobs"
       ],
       "searchScore": 3,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 300,
+      "jobMatches": 263,
       "trendScore": 0,
       "demandScore": 29,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "work from home jobs phoenix",
-      "normalized": "work from home jobs phoenix",
+      "keyword": "remote data entry jobs part time",
+      "normalized": "remote data entry jobs part time",
+      "locale": "en",
+      "geo": "US",
+      "intent": "part-time",
+      "suggestions": [
+        "remote data entry jobs"
+      ],
+      "searchScore": 3,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 184,
+      "trendScore": 0,
+      "demandScore": 29,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "work from home jobs portland",
+      "normalized": "work from home jobs portland",
       "locale": "en",
       "geo": "US",
       "intent": "jobs",
@@ -1254,7 +1246,7 @@
       "demandSignals": [
         "google_autocomplete_ranked"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "emploi du temps",
@@ -1270,14 +1262,14 @@
       "searchScore": 9,
       "suggestionCount": 3,
       "sourceQueryCount": 1,
-      "jobMatches": 265,
+      "jobMatches": 258,
       "trendScore": 0,
       "demandScore": 28,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
       "keyword": "remote marketing jobs",
@@ -1291,56 +1283,56 @@
       "searchScore": 9,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 76,
+      "jobMatches": 79,
       "trendScore": 0,
       "demandScore": 28,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     },
     {
-      "keyword": "work from home jobs surprise az",
-      "normalized": "work from home jobs surprise az",
+      "keyword": "remote marketing jobs seattle",
+      "normalized": "remote marketing jobs seattle",
       "locale": "en",
       "geo": "US",
-      "intent": "jobs",
+      "intent": "marketing",
       "suggestions": [
-        "work from home jobs"
+        "remote marketing jobs"
       ],
-      "searchScore": 5,
-      "suggestionCount": 3,
-      "sourceQueryCount": 3,
-      "jobMatches": 48,
-      "trendScore": 0,
-      "demandScore": 28,
-      "demandSignals": [
-        "google_autocomplete_ranked",
-        "ezyjobs_job_supply"
-      ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
-    },
-    {
-      "keyword": "remote jobs entry level full time",
-      "normalized": "remote jobs entry level full time",
-      "locale": "en",
-      "geo": "US",
-      "intent": "jobs",
-      "suggestions": [
-        "remote jobs entry level"
-      ],
-      "searchScore": 2,
+      "searchScore": 8,
       "suggestionCount": 2,
       "sourceQueryCount": 2,
-      "jobMatches": 140,
+      "jobMatches": 83,
       "trendScore": 0,
       "demandScore": 28,
       "demandSignals": [
         "google_autocomplete_ranked",
         "ezyjobs_job_supply"
       ],
-      "capturedAt": "2026-11-08T11:17:42.501Z"
+      "capturedAt": "2026-11-09T12:52:59.179Z"
+    },
+    {
+      "keyword": "remote marketing jobs oregon",
+      "normalized": "remote marketing jobs oregon",
+      "locale": "en",
+      "geo": "US",
+      "intent": "marketing",
+      "suggestions": [
+        "remote marketing jobs"
+      ],
+      "searchScore": 8,
+      "suggestionCount": 2,
+      "sourceQueryCount": 2,
+      "jobMatches": 79,
+      "trendScore": 0,
+      "demandScore": 28,
+      "demandSignals": [
+        "google_autocomplete_ranked",
+        "ezyjobs_job_supply"
+      ],
+      "capturedAt": "2026-11-09T12:52:59.179Z"
     }
   ],
   "inDemandRoles": [
@@ -1349,6 +1341,12 @@
       "count": 3,
       "remoteCount": 3,
       "directCount": 3
+    },
+    {
+      "title": "Inside Sales Representative",
+      "count": 2,
+      "remoteCount": 2,
+      "directCount": 2
     },
     {
       "title": "Backend Engineer (Ruby), Plan: Spec-Driven Development",
@@ -1385,6 +1383,60 @@
       "count": 2,
       "remoteCount": 2,
       "directCount": 2
+    },
+    {
+      "title": "Sales Manager, Enterprise - Japan",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Commercial Account Executive, Netherlands",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Director, Regional Sales",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Senior Solutions Architect",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Strategic Account Executive - Singapore",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Manager, Forward Deployed Engineering - Munich",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "White Space Manager, Network & Data Halls",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Civil & Structural Architect, Power Generation ",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
+    },
+    {
+      "title": "Industrial Compute",
+      "count": 1,
+      "remoteCount": 1,
+      "directCount": 1
     },
     {
       "title": "Manager, Account Executive, Strategic",
@@ -1460,66 +1512,6 @@
     },
     {
       "title": "GTM Strategy & Planning",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Professional Services, Program Manager",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Senior Professional Services Engineer - North Carolina",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Principal Security GRC Manager, Legal Assurance (USA)",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Sourcing Manager, Core Products",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Senior Customer Engineer - Montreal, QC",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Senior Customer Engineer - Toronto, Canada",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Principal Customer Engineer - Toronto Canada",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Senior Brand Design Recruiter",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "Manager, Corporate Accounting",
-      "count": 1,
-      "remoteCount": 1,
-      "directCount": 1
-    },
-    {
-      "title": "AI Transformation Owner, CRO",
       "count": 1,
       "remoteCount": 1,
       "directCount": 1
